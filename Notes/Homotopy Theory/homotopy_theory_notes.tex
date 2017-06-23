@@ -1,0 +1,59 @@
+\documentclass[12pt, notitlepage]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+\usepackage[english]{babel}
+\usepackage[nottoc]{tocbibind}
+
+\usepackage{hyperref}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage{bbm}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{exmp}[thm]{Example}
+
+\usepackage{mathtools}
+\usepackage{tikz-cd}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+
+\title{Notes on Homotopy Theory}
+\author{Sayantan Khan}
+\date{July 2017}
+
+\usepackage{gentium}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\[
+\begin{tikzcd}[arrows=to]
+\cdots \rar & H_n(A \cap B) \rar & H_n(A) \oplus H_n(B) \rar & H_n(X) \rar & \hphantom{0}\\
+\hphantom{\cdots} \rar 
+& H_{n-1}(A \cap B) \rar 
+& \makebox[\widthof{$H_n(A) \oplus H_n(B)$}][c]{$\cdots\hfill \cdots$} \rar
+&  H_0(X) \rar & 0
+\end{tikzcd}
+\]
+
+
+\bibliography{references}
+\bibliographystyle{amsplain}
+
+
+\end{document}
