@@ -37,6 +37,7 @@
 \usepackage{gentium}
 
 \newcommand{\cat}[1]{\mathrm{#1}}
+\newcommand{\id}{\mathrm{id}}
 
 \begin{document}
 \maketitle
@@ -159,7 +160,16 @@ Alternatively, a pushout can be seen as a coproduct in the category $\cat{TOP}^A
 
 
 \section{Homotopical Constructions}
-In this section, we'll cover the construction of the essential spaces in homotopy theory: the mapping cylinder, cones, suspensions, and loop spaces; we'll cover the pointed and unpointed versions of these, and prove their homotopy equivalence whenever applicable.
+In this section, we'll cover the construction of the essential groups and spaces in homotopy theory: the homotopy groupoid, mapping cylinder, cones, suspensions, and loop spaces.
+
+\subsection{Homotopy groupoid}
+\begin{defn}
+Let $X$ and $Y$ be topological spaces. The category $\Pi(X,Y)$ has its objects as maps from $X$ to $Y$, and its morphisms are homotopies between maps quotiented by the following relation. Two homotopies between maps $f$ and $g$, $\mathcal{P}$ and $\mathcal{Q}$ are the same morphism if
+there is a homotopy $\mathcal{M}$ from $\mathcal{P}$ to $\mathcal{Q}$ relative to\footnote{A homotopy relative to a subspace is a homotopy that
+is constant on that subspace.} $X \times \partial I$.
+\end{defn}
+The quotienting gives the collection of morphisms a groupoid structure. In
+particular, associativity only works out because of the quotienting. The fundamental groupoid is a special case of the homotopy groupoid $\Pi(X,Y)$, when $X$ is just a point. Similarly, we can describe the pointed version of the homotopy groupoid, which we denote by $\Pi^0(X,Y)$ for pointed spaces $X$ and $Y$.
 
 \subsection{Mapping cylinder}
 \begin{defn}
@@ -172,20 +182,33 @@ In this section, we'll cover the construction of the essential spaces in homotop
     \]
 \end{defn}
 Topologically, the mapping cylinder is the disjoint union of $X \times I$ and $Y$ quotiented with the relation $(x, 1) \sim f(x)$.
-\[
-\text{\color{red} Insert picture later}
-\]
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=0.25]{mapping_cylinder.png}
+    \caption{The mapping cylinder ({\color{red}Temporary. Put citation.})}
+\end{figure}
 
-%\[
-%\begin{tikzcd}[arrows=to]
-%\cdots \rar & H_n(A \cap B) \rar & H_n(A) \oplus H_n(B) \rar & H_n(X) \rar & \hphantom{0}\\
-%\hphantom{\cdots} \rar 
-%& H_{n-1}(A \cap B) \rar 
-%& \makebox[\widthof{$H_n(A) \oplus H_n(B)$}][c]{$\cdots\hfill \cdots$} \rar
-%&  H_0(X) \rar & 0
-%\end{tikzcd}
-%\]
+We construct some more maps.
+\begin{align*}
+q: Z(&f) \to Y \\
+q(x,t) &:= f(x) \\
+q(y) &:= y  
+\end{align*}
+\begin{align*}
+j: X &\to Z(f) \\
+j(x) &:= (x, 0)
+\end{align*}
+We now have the following relations.
+\begin{align*}
+qj &= f \\
+qJ &= \id_{Y}
+\end{align*}
+We can also see the map $Jq$ is homotopic to $\id_{Z(f)}$ relative to the $Y$ subspace. This means $Z(f)$ is homotopy equivalent to $Y$ and $q$ and $J$ are the homotopy equivalence. Note that $j$ is a closed embedding. We have thus decomposed $f$ into a closed embedding $j$, and a homotopy equivalence $q$.
 
+\subsection{Suspension}
+\begin{defn}
+    content...
+\end{defn}
 
 %\bibliography{references}
 %\bibliographystyle{amsplain}
