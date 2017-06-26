@@ -181,3 +181,7 @@ TSWLatexianTemp*
 
 # Books
 Books
+
+# Emacs crap
+*/\#*\#
+*/auto/
