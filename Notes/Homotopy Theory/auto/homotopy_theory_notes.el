@@ -33,7 +33,12 @@
     "gentium")
    (TeX-add-symbols
     '("cat" 1)
-    "id")
+    "id"
+    "homtheorie"
+    "redhom")
+   (LaTeX-add-labels
+    "sec:gener-cohom-theor"
+    "sec:corr-betw-homol")
    (LaTeX-add-amsthm-newtheorems
     "thm"
     "lem"

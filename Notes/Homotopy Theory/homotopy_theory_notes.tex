@@ -38,6 +38,8 @@
 
 \newcommand{\cat}[1]{\mathrm{#1}}
 \newcommand{\id}{\mathrm{id}}
+\newcommand{\homtheorie}{{h}_{\ast}}
+\newcommand{\redhom}{\widetilde{h}_{\ast}}
 
 \begin{document}
 \maketitle
@@ -245,6 +247,62 @@ equivalence $q$.
 \begin{defn}
   content...
 \end{defn}
+
+\section{Generalized (Co)homology Theories}
+\label{sec:gener-cohom-theor}
+
+\subsection{Correspondence between unreduced and reduced homology theory}
+\label{sec:corr-betw-homol}
+
+\begin{defn}[Unreduced homology]
+  An unreduced homology theory is a functor $h_{\ast}$ from the category $\cat{hCW}^2$ to the category of
+  $\mathbb{Z}$ graded abelian groups $\mathbb{Z}-\cat{Ab}$ such that $h_{\ast}$ along with the following
+  natural transformations.
+  \begin{align*}
+    \partial_{\ast} : h_{\ast} \to h_{\ast - 1} \circ I
+  \end{align*}
+  Here, $I$ sends $(X, A)$ to $(A, \varnothing)$. The funtor must satisfy the following axioms.
+  \begin{description}
+  \item[Homotopy equivalence (H):] If two spaces in $\cat{hCW}^2$ are homotopy equivalent via a map of pairs
+    $f$, then $h_{\ast}(f)$ is a natural isomorphism.
+  \item[Exactness (E):] We have the following long exact sequence. 
+    \[
+      \begin{tikzcd}
+        \cdots \ar{r}{} & h_{n}(A) \ar{r}{i_{\ast}} & h_{n}(X) \ar{r}{j_{\ast}} & h_{n}(X,A) \ar{r}{\partial_{\ast}} & h_{n-1}(A) \ar{r} & \cdots \\
+      \end{tikzcd}
+    \]
+  \item[Excision (A):] For subcomplexes $A$ and $B$, the map $i : (A, A \cap B) \hookrightarrow (A \cup B, B)$ induces an isomorphism from
+    $h_{\ast}(A, A \cap B) \to h_{\ast} (A \cup B, B)$.
+  \item[Direct union (DV):] For any indexing set $\Omega$, and a space $X = \coprod_{\alpha \in \Omega} X_{\alpha}$, the induced maps
+    $h_{\ast}(X_{\alpha}) \to h_{\ast}(X)$ induce the following isomorphism.
+    \begin{align*}
+      \bigoplus_{\alpha \in \Omega} h_{\ast}(X_{\alpha}) \to h_{\ast}(X)
+    \end{align*}
+  \end{description}
+\end{defn}
+
+\begin{defn}[Reduced homology]
+  A reduced homology theory is a functor $\redhom$ from $\cat{hCW}^0$ to $\mathbb{Z}$ graded abelian groups
+  along with the following natural transformation $s_{\ast}$.
+  \begin{align*}
+    \redhom(X) \to \widetilde{h}_{\ast + 1} (SX)
+  \end{align*}
+  This functor satisfies the following axioms.
+  \begin{description}
+  \item[Homotopy invariance (H):] A pointed homotopy between spaces induces isomorphisms in the homology groups.
+  \item[Suspension (S):] The map $s_{\ast}$ is a natural isomorphism.
+  \item[Exactness (E):] If $i: A \hookrightarrow X$ is a cofibration, then the following sequence is exact.
+    \begin{align*}
+      \redhom(A) \rightarrow \redhom(X) \rightarrow \redhom\left( X/A \right)
+    \end{align*}
+  \item[Direct union (DV):] If $X = \bigvee_{\alpha} X_{\alpha}$, then the inclusions induce the following isomorphism.
+    \begin{align*}
+      \bigoplus_{\alpha} \redhom(X_{\alpha}) \to \redhom(X)
+    \end{align*}
+  \end{description}
+\end{defn}
+
+Unreduced and reduced cohomology are defined in a similar manner, by using contravariant functors and reversing all the arrows.
 
 % \bibliography{references} \bibliographystyle{amsplain}
 
