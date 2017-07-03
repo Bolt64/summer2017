@@ -185,3 +185,6 @@ Books
 # Emacs crap
 */\#*\#
 */auto/*
+
+# Build directory
+build/
