@@ -1,0 +1,232 @@
+\documentclass[12pt, notitlepage]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+
+\usepackage[english]{babel}
+\usepackage[nottoc]{tocbibind}
+
+\usepackage{hyperref}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry}
+
+\usepackage{bbm}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\newtheorem{thm}{Theorem}[section]
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{remark}[thm]{Remark}
+
+\usepackage{mathtools}
+\usepackage{tikz-cd}
+
+\usepackage{xcolor}
+
+\theoremstyle{definition}
+\newtheorem{defn}{Definition}[section]
+
+\title{Proofs of some fairly technical results}
+\author{Sayantan Khan}
+\date{July 2017}
+
+\usepackage{gentium}
+
+\newcommand{\cat}[1]{\mathrm{#1}}
+\newcommand{\cohomtheorie}{{h}^{\ast}}
+\newcommand{\calz}{\mathcal{Z}}
+
+\makeatletter
+\newcommand{\colim@}[2]{%
+  \vtop{\m@th\ialign{##\cr
+    \hfil$#1\operator@font colim$\hfil\cr
+    \noalign{\nointerlineskip\kern1.5\ex@}#2\cr
+    \noalign{\nointerlineskip\kern-\ex@}\cr}}%
+}
+\newcommand{\colim}{%
+  \mathop{\mathpalette\colim@{\rightarrowfill@\textstyle}}\nmlimits@
+}
+\makeatother
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\newpage
+
+\section{Comparison theorem for cohomology theories}
+\label{sec:comp-theor-cohom}
+
+Fill in later
+
+\section{Brown's representability theorem}
+\label{sec:browns-repr-theor}
+
+In this section, we shall see that all reduced cohomology theories that satisfy the wedge sum
+($\mathrm{DV}$) axiom are representable functors, i.e. they are naturally isomorphic to the hom
+functor in the homotopy category $\cat{hCW}_{\ast}$. In particular, for a given reduced cohomology
+theory $\cohomtheorie$, we'll construct a sequence of spaces $\calz(n)$, which we'll call a
+spectrum, such that $h^n(X)$ is naturally isomorphic to $\left[X, \calz(n)\right]$.
+
+\subsection{Spectra and cohomology theories}
+\label{sec:spectra-cohom-theor}
+
+\begin{defn}[Spectrum]
+  A spectrum is a $\mathbb{Z}$ indexed sequence of pointed spaces $\calz(n)$ together with structure
+  maps $\sigma_n: \Sigma \calz(n) \to \calz(n+1)$. If the adjoints of the structure maps, i.e. the
+  maps $\widetilde{\sigma}_n: \calz(n) \to \Omega \calz(n+1)$ are homotopy equivalences, then the
+  spectrum is called an $\Omega$-spectrum.
+\end{defn}
+
+\begin{prop}
+  Given a spectrum $\calz$, one can define the following functor.
+  \begin{align*}
+    h^n(X; \calz) = \colim_{k \to \infty} \left[S^k \wedge X, \calz(k+n)\right]
+  \end{align*}
+  This is a contravariant functor which satisfies the homotopy invariance $(\mathrm{H})$, suspension
+  $(\mathrm{S})$, and exactness $(\mathrm{E})$ axiom. Furthermore, if $\calz$ is an
+  $\Omega$-spectrum, the functor also satisfies the $(\mathrm{DV})$ axiom. It is therefore a reduced
+  cohomology theory.
+\end{prop}
+
+\begin{proof}
+  We'll deal with the axioms one at a time.
+  \begin{description}
+  \item[Homotopy invariance (H):] This is obvious, because we are working in the homotopy category
+    $\cat{hCW}_{\ast}$.  Any two continuous maps which are homotopy equivalent are the same morphism
+    in this category, hence correspond to the same map to $\calz(k+n)$. And since the maps are same
+    for all $k$, they also agree in the colimit.
+  \item[Suspension (S):] We need to show there is a natural isomorphism from $h^n(X)$ to
+    $h^{n+1}(\Sigma X)$. To see this natural isomorphism, note that $h^n(X)$ is the colimit of the
+    following diagram.
+    \begin{align*}
+      [X, \calz(n)] \to [\Sigma X, \calz(n+1)] \to [\Sigma^2 X, \calz(n+2)] \to \cdots
+    \end{align*}
+    But for a diagram like this, the colimit won't change if we drop finitely many groups from the
+    beginning of the diagram. Hence, $h^n(X)$ is also the colimit of the following diagram.
+    \begin{align*}
+      [\Sigma X, \calz(n+1)] \to [\Sigma^2 X, \calz(n+2)] \to [\Sigma^3 X, \calz(n+3)] \to \cdots
+    \end{align*}
+    
+    Similarly, $h^{n+1}(\Sigma X)$ is the colimit of the following diagram.
+    \begin{align*}
+      [\Sigma X, \calz(n+1)] \to [\Sigma^2 X, \calz(n+2)] \to [\Sigma^3 X, \calz(n+3)] \to \cdots
+    \end{align*}
+    But now we notice that the groups are the same in the diagram for $h^n(X)$ and
+    $h^{n+1}(\Sigma X)$. We draw isomorphisms between the corresponding groups, and that gives an
+    natural isomorphism in the colimit.
+  \item[Exactness (E):] We need to show for any cofibration $i: A \hookrightarrow X$, the following
+    sequence is exact.
+    \begin{align*}
+      h^n(A) \leftarrow h^n(X) \leftarrow h^n\left( X/A \right)
+    \end{align*}
+    Using the cofibre sequence, we get that following sequences are exact for all $k$.
+    \begin{align*}
+      [\Sigma^k A, \calz(n+k)] \leftarrow [\Sigma^k X, \calz(n+k)] \leftarrow \left[\Sigma^k \left(X/A\right), \calz(n+k) \right]
+    \end{align*}
+    And since filtered colimits of exact sequences are exact in $\cat{AbGrp}$, the cohomology
+    sequence is exact. ({\color{red} Should check this by hand in this particular case.})
+  \item[Wedge sum (DV):] Using the fact that suspension and loop space functors are adjoints, we
+    have the following.
+    \begin{align*}
+      [\Sigma^k X, \calz(n+k)] \cong [X, \Omega^k \calz(n+k)]
+    \end{align*}
+    This means that $h^n(X)$ is the colimit of the following diagram.
+    \begin{align*}
+      [X, \calz(n)] \rightarrow [X, \Omega \calz(n+1)] \rightarrow [X, \Omega^2 \calz(n+2)] \rightarrow \cdots
+    \end{align*}
+    If $\calz$ is an $\Omega$-spectrum, then all the arrows in the above diagram are
+    isomorphisms. That means $h^n(X) = [X, \calz(n)]$. But the functor $[\cdot, \calz(n)]$ satisfies
+    $(\mathrm{DV})$ axiom. That means $h^{\ast}$ satisfies $(\mathrm{DV})$ axiom.
+  \end{description}
+\end{proof}
+
+\newpage
+
+\appendix
+
+\section{Definitions and notation}
+\label{sec:definitions-notation}
+
+\begin{defn}[Suspension of a pointed space]
+  The suspension $\Sigma X$ of a pointed space $X$ is the smash product $S^1 \wedge X$.
+\end{defn}
+
+\begin{defn}[Loop space of a pointed space]
+  The loop spaces $\Omega X$ of a pointed space $X$ is the set of all pointed maps from $S^1$ to $X$
+  with the compact-open topology.
+\end{defn}
+
+\section{Some useful lemmas and theorems}
+\label{sec:some-useful-lemmas}
+
+\textbf{Note:} Although we state many of the lemmas here for $\cat{TOP}$, they are also true for
+$\cat{TOP}_{\ast}$, and the proof is similar.
+
+\begin{lem}
+  If $i: A \hookrightarrow X$ is a cofibration (in the category $\cat{TOP}$), then the mapping cone
+  $C(i)$ is homotopy equivalent to $X/A$.
+\end{lem}
+
+\begin{proof}
+  We will first construct the maps to and from $C(i)$ to $X/A$. The maps from $C(i)$ to $X/A$ is the
+  map that collapses the cone of $A$ to a point corresponding to $A$ in $X/A$. Now consider a map
+  from $H: A \times I$ to $C(i)$, such that $H$ contracts $A$ to a point in $C(i)$, starting from
+  the inclusion of $A$ in $X$. Let the map $j$ from $X$ to $C(i)$ be the inclusion map. Since $i$ is
+  a cofibration, we can extend $H$ with the initial condition $j$ to a map $J: X \times I \to
+  C(i)$. But $J(\cdot, 1)$ collapses $A$ to a point. That means it factors through a $X/A$. This
+  gives us a map $k$ from $X/A$ to $C(i)$.
+
+  The fact that these maps are homotopy inverses can be verified using the homotopy
+  $J$. ({\color{red} Not sure of this. Verify later.})
+\end{proof}
+
+\begin{lem}
+  In the category $\cat{TOP}$, the following sequence is h-coexact.
+  \begin{align*}
+    A \xrightarrow{f} B \xrightarrow{i} C(f)
+  \end{align*}
+  That means for any space $Z$, the following sequence of abelian groups is exact.
+  \begin{align*}
+    [A, Z] \leftarrow [B,Z] \leftarrow [C(f), Z]
+  \end{align*}
+\end{lem}
+
+\begin{proof}
+  If an element $[c] \in [B,Z]$ goes to $0$ in $[A, Z]$, that means $c \circ f: A \to Z$ is
+  nullhomotopic, where $c$ is a representative of $[c]$. But that means there is some function
+  $d \in C(f)$ such that $c = d \circ i$. This shows the exactness of the sequence.
+\end{proof}
+
+\begin{lem}
+  If $K$ is a compact space, let $A_i$ be a sequence of spaces where points are closed,
+  and $A$ is the colimit of the following diagram:
+  \begin{align*}
+    A_0 \hookrightarrow A_1 \hookrightarrow A_2 \hookrightarrow \cdots
+  \end{align*}
+  where all the embeddings are closed, then a map from $K$ to $A$ factors finitely through some
+  $A_i$.
+\end{lem}
+
+\begin{proof}
+  Let $J = f(K)$ be the compact image of $K$ in $A$. For each set $A_i \setminus A_{i-1}$, pick
+  an element $c_i$ of $J$ in the set, if $J$ intersects $A_i \setminus A_{i-1}$. Since $A_i$'s
+  are closed, that means the subset $c_i$ has the discrete topology. Furthermore, since points are
+  closed, the set $\{\cup c_i\}$ is a closed subset of $J$, hence compact. And compact spaces with
+  discrete topology are finite. That means only finitely many $A_i \setminus A_{i-1}$ intersect $J$.
+  This means the map factors through at some finite stage.
+\end{proof}
+
+\begin{thm}[Cofibre sequence]
+  Put in result
+\end{thm}
+
+% \bibliography{references} \bibliographystyle{amsplain}
+
+\end{document}
