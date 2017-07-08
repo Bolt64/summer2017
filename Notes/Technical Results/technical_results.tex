@@ -138,21 +138,22 @@ spectrum, such that $h^n(X)$ is naturally isomorphic to $\left[X, \calz(n)\right
 
 In the previous section, we saw that if we are given an $\Omega$-prespectrum, we can construct a
 reduced cohomology theory using the prespectrum. Brown's representability theorem is the converse of
-the previous theorem, i.e. given a reduced cohomology theory which satisfies the $(\mathrm{DV})$ axiom, it can be represented by an
-$\Omega$-prespectrum, which is unique up to homotopy. This theorem is fairly technical, and will
-require the use of the theorem on Milnor exact sequence (theorem \ref{thm-milnor}).
+the previous theorem, i.e. given a reduced cohomology theory which satisfies the $(\mathrm{DV})$
+axiom, it can be represented by an $\Omega$-prespectrum, which is unique up to homotopy. This
+theorem is fairly technical, and will require the use of the theorem on Milnor exact sequence
+(theorem \ref{thm-milnor}).
 
 \begin{thm}[Brown's representability theorem]
-  Let $h^{\ast}$ be a reduced cohomology theory satisfying the $(\mathrm{DV})$ axiom. Then there
-  is an $\Omega$-prespectrum $\calz$ such that $h^{n}$ is naturally isomorphic to
+  Let $h^{\ast}$ be a reduced cohomology theory satisfying the $(\mathrm{DV})$ axiom. Then there is
+  an $\Omega$-prespectrum $\calz$ such that $h^{n}$ is naturally isomorphic to
   $\left[\cdot, \calz(n) \right]$. Furthermore, this $\Omega$-prespectrum is unique up to homotopy.
 \end{thm}
 
 \begin{proof}
   The proof will have two main parts. The first part will involve constructing the spaces $\calz(n)$
-  for each $n$ such that there is a natural isomorphism from $h^n(X)$ to $\left[ X, \calz(n) \right]$
-  for all CW complexes $X$. The second part will involve constructing the structure maps from
-  $\Sigma \calz(n) \to \calz(n+1)$.
+  for each $n$ such that there is a natural isomorphism from $h^n(X)$ to
+  $\left[ X, \calz(n) \right]$ for all CW complexes $X$. The second part will involve constructing
+  the structure maps from $\Sigma \calz(n) \to \calz(n+1)$.
 
   Fix an $n \in \mathbb{Z}$. We will construct the space $\calz(n)$ as a CW complex, using finite
   dimensional skeletons $\calz(n)_k$. For each $k$, we will also pick a cohomology class $c_n(k)$ in
@@ -166,8 +167,8 @@ require the use of the theorem on Milnor exact sequence (theorem \ref{thm-milnor
   \begin{align*}
     \calz(n)_0 := \bigvee_{\alpha \in h^n(S^0)} S_{\alpha}^0
   \end{align*}
-  The cohomology group of $\calz(n)_0$ is given by a direct product, since $h^n$ satisfies the $\mathrm{(DV)}$
-  axiom.
+  The cohomology group of $\calz(n)_0$ is given by a direct product, since $h^n$ satisfies the
+  $\mathrm{(DV)}$ axiom.
   \begin{align*}
     h^n(Z(n)_0) \cong \prod_{\alpha \in h^n(S^0)} h^n(S_{\alpha}^0)
   \end{align*}
@@ -176,11 +177,12 @@ require the use of the theorem on Milnor exact sequence (theorem \ref{thm-milnor
     c_n(0) := \prod_{\alpha \in h^n(S^0)} \alpha
   \end{align*}
   Since $k=0$, we only need to show that $d_n^0(0)$ is a surjection. Pick any $\alpha \in h^n(S^0)$.
-  Corresponding to this $\alpha$, there's a copy of $S^0$ sitting inside $\calz(n)_0$. Let $f$ be the
-  inclusion map of this copy of $S^0$ into $\calz(n)_0$. Then the induced map on cohomology is the projection
-  map on the $\alpha$\textsuperscript{th} coordinate, since the cohomology theory satisfies the $(\mathrm{DV})$ axiom. Applying this induced
-  map on $c_n(0)$, we see that in the $\alpha$\textsuperscript{th}, it has $\alpha$, because of the way we defined it.
-  This shows the map is surjective.
+  Corresponding to this $\alpha$, there's a copy of $S^0$ sitting inside $\calz(n)_0$. Let $f$ be
+  the inclusion map of this copy of $S^0$ into $\calz(n)_0$. Then the induced map on cohomology is
+  the projection map on the $\alpha$\textsuperscript{th} coordinate, since the cohomology theory
+  satisfies the $(\mathrm{DV})$ axiom. Applying this induced map on $c_n(0)$, we see that in the
+  $\alpha$\textsuperscript{th}, it has $\alpha$, because of the way we defined it.  This shows the
+  map is surjective.
 \end{proof}
 
 \newpage
