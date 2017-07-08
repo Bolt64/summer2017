@@ -31,7 +31,7 @@
 \theoremstyle{definition}
 \newtheorem{defn}{Definition}[section]
 
-\title{Proofs of some fairly technical results}
+\title{Proofs of some technical results}
 \author{Sayantan Khan}
 \date{July 2017}
 
@@ -60,6 +60,11 @@
 
 \newpage
 
+\section{Blakers-Massey Theorem}
+\label{sec:blak-mass-theor}
+
+Fill in later
+
 \section{Comparison theorem for cohomology theories}
 \label{sec:comp-theor-cohom}
 
@@ -77,74 +82,105 @@ spectrum, such that $h^n(X)$ is naturally isomorphic to $\left[X, \calz(n)\right
 \subsection{Spectra and cohomology theories}
 \label{sec:spectra-cohom-theor}
 
-\begin{defn}[Spectrum]
-  A spectrum is a $\mathbb{Z}$ indexed sequence of pointed spaces $\calz(n)$ together with structure
-  maps $\sigma_n: \Sigma \calz(n) \to \calz(n+1)$. If the adjoints of the structure maps, i.e. the
-  maps $\widetilde{\sigma}_n: \calz(n) \to \Omega \calz(n+1)$ are homotopy equivalences, then the
-  spectrum is called an $\Omega$-spectrum.
+\begin{defn}[$\Omega$-Prespectrum]
+  A prespectrum is a $\mathbb{Z}$ indexed sequence of pointed spaces $\calz(n)$ together with
+  structure maps $\sigma_n: \Sigma \calz(n) \to \calz(n+1)$. If the adjoints of the structure maps,
+  i.e. the maps $\widetilde{\sigma}_n: \calz(n) \to \Omega \calz(n+1)$ are homotopy equivalences,
+  then the prespectrum is called an $\Omega$-prespectrum.
 \end{defn}
 
 \begin{prop}
-  Given a spectrum $\calz$, one can define the following functor.
+  Given a $\Omega$-prespectrum $\calz$, one can define the following functor.
   \begin{align*}
-    h^n(X; \calz) = \colim_{k \to \infty} \left[S^k \wedge X, \calz(k+n)\right]
+    h^n(X; \calz) = \left[X, \calz(n)\right]
   \end{align*}
   This is a contravariant functor which satisfies the homotopy invariance $(\mathrm{H})$, suspension
-  $(\mathrm{S})$, and exactness $(\mathrm{E})$ axiom. Furthermore, if $\calz$ is an
-  $\Omega$-spectrum, the functor also satisfies the $(\mathrm{DV})$ axiom. It is therefore a reduced
-  cohomology theory.
+  $(\mathrm{S})$, exactness $(\mathrm{E})$, and the wedge sum $(\mathrm{DV})$ axiom. It is therefore
+  a reduced cohomology theory.
 \end{prop}
 
 \begin{proof}
   We'll deal with the axioms one at a time.
   \begin{description}
-  \item[Homotopy invariance (H):] This is obvious, because we are working in the homotopy category
-    $\cat{hCW}_{\ast}$.  Any two continuous maps which are homotopy equivalent are the same morphism
-    in this category, hence correspond to the same map to $\calz(k+n)$. And since the maps are same
-    for all $k$, they also agree in the colimit.
+  \item[Homotopy invariance (H):] This is obvious, because we are looking at homotopy classes of
+    maps.
   \item[Suspension (S):] We need to show there is a natural isomorphism from $h^n(X)$ to
-    $h^{n+1}(\Sigma X)$. To see this natural isomorphism, note that $h^n(X)$ is the colimit of the
-    following diagram.
+    $h^{n+1}(\Sigma X)$. Note that the adjoint of the structure maps are homotopy equivalences.  We
+    therefore have a natural isomorphism.
     \begin{align*}
-      [X, \calz(n)] \to [\Sigma X, \calz(n+1)] \to [\Sigma^2 X, \calz(n+2)] \to \cdots
+      \left[ X, \calz(n) \right] \cong \left[ X, \Omega \calz(n+1) \right]
     \end{align*}
-    But for a diagram like this, the colimit won't change if we drop finitely many groups from the
-    beginning of the diagram. Hence, $h^n(X)$ is also the colimit of the following diagram.
+    On the other hand, since $\Sigma$ are $\Omega$ are adjoints, we have the following natural
+    isomorphism.
     \begin{align*}
-      [\Sigma X, \calz(n+1)] \to [\Sigma^2 X, \calz(n+2)] \to [\Sigma^3 X, \calz(n+3)] \to \cdots
+      \left[ X, \Omega \calz(n+1) \right] \cong \left[ \Sigma X, \calz(n+1) \right]
     \end{align*}
-    
-    Similarly, $h^{n+1}(\Sigma X)$ is the colimit of the following diagram.
-    \begin{align*}
-      [\Sigma X, \calz(n+1)] \to [\Sigma^2 X, \calz(n+2)] \to [\Sigma^3 X, \calz(n+3)] \to \cdots
-    \end{align*}
-    But now we notice that the groups are the same in the diagram for $h^n(X)$ and
-    $h^{n+1}(\Sigma X)$. We draw isomorphisms between the corresponding groups, and that gives an
-    natural isomorphism in the colimit.
+    Composing the two natural isomorphisms, we get our required isomorphism.
   \item[Exactness (E):] We need to show for any cofibration $i: A \hookrightarrow X$, the following
     sequence is exact.
     \begin{align*}
       h^n(A) \leftarrow h^n(X) \leftarrow h^n\left( X/A \right)
     \end{align*}
-    Using the cofibre sequence, we get that following sequences are exact for all $k$.
+    Using the cofibre sequence, we get that following sequence is exact.
     \begin{align*}
-      [\Sigma^k A, \calz(n+k)] \leftarrow [\Sigma^k X, \calz(n+k)] \leftarrow \left[\Sigma^k \left(X/A\right), \calz(n+k) \right]
+      [\Sigma A, \calz(n)] \leftarrow [\Sigma X, \calz(n)] \leftarrow \left[\Sigma \left(X/A\right), \calz(n) \right]
     \end{align*}
-    And since filtered colimits of exact sequences are exact in $\cat{AbGrp}$, the cohomology
-    sequence is exact. ({\color{red} Should check this by hand in this particular case.})
-  \item[Wedge sum (DV):] Using the fact that suspension and loop space functors are adjoints, we
-    have the following.
-    \begin{align*}
-      [\Sigma^k X, \calz(n+k)] \cong [X, \Omega^k \calz(n+k)]
-    \end{align*}
-    This means that $h^n(X)$ is the colimit of the following diagram.
-    \begin{align*}
-      [X, \calz(n)] \rightarrow [X, \Omega \calz(n+1)] \rightarrow [X, \Omega^2 \calz(n+2)] \rightarrow \cdots
-    \end{align*}
-    If $\calz$ is an $\Omega$-spectrum, then all the arrows in the above diagram are
-    isomorphisms. That means $h^n(X) = [X, \calz(n)]$. But the functor $[\cdot, \calz(n)]$ satisfies
-    $(\mathrm{DV})$ axiom. That means $h^{\ast}$ satisfies $(\mathrm{DV})$ axiom.
+  \item[Wedge sum (DV):] The functor $[\cdot, \calz(n)]$ satisfies $(\mathrm{DV})$ axiom. This is
+    fairly easy to check. That means $h^{\ast}$ satisfies $(\mathrm{DV})$ axiom.
   \end{description}
+\end{proof}
+
+{\color{red} To construct easy examples of spectra, one needs to check that filtered colimits
+  commute with the loop space functor, at least for nice enough spaces.}
+
+\subsection{Proof of Brown's representability theorem}
+\label{sec:proof-browns-repr}
+
+In the previous section, we saw that if we are given an $\Omega$-prespectrum, we can construct a
+reduced cohomology theory using the prespectrum. Brown's representability theorem is the converse of
+the previous theorem, i.e. given a reduced cohomology theory which satisfies the $(\mathrm{DV})$ axiom, it can be represented by an
+$\Omega$-prespectrum, which is unique up to homotopy. This theorem is fairly technical, and will
+require the use of the theorem on Milnor exact sequence (theorem \ref{thm-milnor}).
+
+\begin{thm}[Brown's representability theorem]
+  Let $h^{\ast}$ be a reduced cohomology theory satisfying the $(\mathrm{DV})$ axiom. Then there
+  is an $\Omega$-prespectrum $\calz$ such that $h^{n}$ is naturally isomorphic to
+  $\left[\cdot, \calz(n) \right]$. Furthermore, this $\Omega$-prespectrum is unique up to homotopy.
+\end{thm}
+
+\begin{proof}
+  The proof will have two main parts. The first part will involve constructing the spaces $\calz(n)$
+  for each $n$ such that there is a natural isomorphism from $h^n(X)$ to $\left[ X, \calz(n) \right]$
+  for all CW complexes $X$. The second part will involve constructing the structure maps from
+  $\Sigma \calz(n) \to \calz(n+1)$.
+
+  Fix an $n \in \mathbb{Z}$. We will construct the space $\calz(n)$ as a CW complex, using finite
+  dimensional skeletons $\calz(n)_k$. For each $k$, we will also pick a cohomology class $c_n(k)$ in
+  $h^n(\calz(n)_k)$ such that the map $d_n^{m}(k): \left[S^m, \calz(n)_k \right] \to h^n(S^m)$ is an
+  isomorphism for $m < k$ and surjection for $m=k$.
+  \begin{align*}
+    d_n^{m}(k) &: \left[ S^m, \calz(n)_k\right] \to h^n(S^m) \\
+    d_n^{m}(k) &: [f] \mapsto f^{\ast}(c_n(k))
+  \end{align*}
+  For $k=0$, we define $\calz(n)_0$ as follows.
+  \begin{align*}
+    \calz(n)_0 := \bigvee_{\alpha \in h^n(S^0)} S_{\alpha}^0
+  \end{align*}
+  The cohomology group of $\calz(n)_0$ is given by a direct product, since $h^n$ satisfies the $\mathrm{(DV)}$
+  axiom.
+  \begin{align*}
+    h^n(Z(n)_0) \cong \prod_{\alpha \in h^n(S^0)} h^n(S_{\alpha}^0)
+  \end{align*}
+  Pick the following element as $c_n(0)$.
+  \begin{align*}
+    c_n(0) := \prod_{\alpha \in h^n(S^0)} \alpha
+  \end{align*}
+  Since $k=0$, we only need to show that $d_n^0(0)$ is a surjection. Pick any $\alpha \in h^n(S^0)$.
+  Corresponding to this $\alpha$, there's a copy of $S^0$ sitting inside $\calz(n)_0$. Let $f$ be the
+  inclusion map of this copy of $S^0$ into $\calz(n)_0$. Then the induced map on cohomology is the projection
+  map on the $\alpha$\textsuperscript{th} coordinate, since the cohomology theory satisfies the $(\mathrm{DV})$ axiom. Applying this induced
+  map on $c_n(0)$, we see that in the $\alpha$\textsuperscript{th}, it has $\alpha$, because of the way we defined it.
+  This shows the map is surjective.
 \end{proof}
 
 \newpage
@@ -161,6 +197,14 @@ spectrum, such that $h^n(X)$ is naturally isomorphic to $\left[X, \calz(n)\right
 \begin{defn}[Loop space of a pointed space]
   The loop spaces $\Omega X$ of a pointed space $X$ is the set of all pointed maps from $S^1$ to $X$
   with the compact-open topology.
+\end{defn}
+
+\begin{defn}[$\lim^1$]
+  Let $T$ be the category of towers of abelian groups, i.e. $\mathbb{N}$ indexed set of abelian
+  groups $G_i$ with maps $f_i: G_i \to G_{i-1}$, and maps are set of arrows that make the whole
+  thing commute {\color{red} (Check that this category has enough injectives)}. Then $\lim$ is a
+  left exact functor from $T$ to $\cat{AbGrp}$ {\color{red} (This is easy to check)}, and we define
+  $\lim^1$ to be the first right derived functor of $\lim$.
 \end{defn}
 
 \section{Some useful lemmas and theorems}
@@ -205,8 +249,8 @@ $\cat{TOP}_{\ast}$, and the proof is similar.
 \end{proof}
 
 \begin{lem}
-  If $K$ is a compact space, let $A_i$ be a sequence of spaces where points are closed,
-  and $A$ is the colimit of the following diagram:
+  If $K$ is a compact space, let $A_i$ be a sequence of spaces where points are closed, and $A$ is
+  the colimit of the following diagram:
   \begin{align*}
     A_0 \hookrightarrow A_1 \hookrightarrow A_2 \hookrightarrow \cdots
   \end{align*}
@@ -215,9 +259,9 @@ $\cat{TOP}_{\ast}$, and the proof is similar.
 \end{lem}
 
 \begin{proof}
-  Let $J = f(K)$ be the compact image of $K$ in $A$. For each set $A_i \setminus A_{i-1}$, pick
-  an element $c_i$ of $J$ in the set, if $J$ intersects $A_i \setminus A_{i-1}$. Since $A_i$'s
-  are closed, that means the subset $c_i$ has the discrete topology. Furthermore, since points are
+  Let $J = f(K)$ be the compact image of $K$ in $A$. For each set $A_i \setminus A_{i-1}$, pick an
+  element $c_i$ of $J$ in the set, if $J$ intersects $A_i \setminus A_{i-1}$. Since $A_i$'s are
+  closed, that means the subset $c_i$ has the discrete topology. Furthermore, since points are
   closed, the set $\{\cup c_i\}$ is a closed subset of $J$, hence compact. And compact spaces with
   discrete topology are finite. That means only finitely many $A_i \setminus A_{i-1}$ intersect $J$.
   This means the map factors through at some finite stage.
@@ -226,6 +270,31 @@ $\cat{TOP}_{\ast}$, and the proof is similar.
 \begin{thm}[Cofibre sequence]
   Put in result
 \end{thm}
+
+\begin{thm}[Alternative characterization of $\lim^1$]
+  If $F$ is an object in the tower category, then $\lim^1(F)$ is the cokernel of the following map.
+  \begin{align*}
+    \alpha_F : \prod_{i \in \mathbb{N}} F_i &\to \prod_{i \in \mathbb{N}} F_i \\
+    \alpha_F : (g_0, g_1, g_2, \ldots) &\mapsto \left(g_0 - f_1(g_1), g_1 - f_2(g_2), \ldots \right)
+  \end{align*}
+\end{thm}
+
+\begin{proof}
+  fill in later
+\end{proof}
+
+\begin{thm}[Milnor exact sequence] \label{thm-milnor} If $\{ i_n : X_n \hookrightarrow X_{n+1} \}$
+  for $n \in \mathbb{N}$ are a sequence of nested CW subcomplexes such that $X = \bigcup_n X_n$, and
+  $h^{\ast}$ is a reduced cohomology theory, then we have the following exact sequence for all
+  $i \geq 1$.
+  \begin{align*}
+    0 \rightarrow {\lim_{n}}^1 h^{i-1}(X_n) \rightarrow h^i(X) \rightarrow \lim_n h^i(X_n) \rightarrow 0
+  \end{align*}
+\end{thm}
+
+\begin{proof}
+  fill in later
+\end{proof}
 
 % \bibliography{references} \bibliographystyle{amsplain}
 
