@@ -37,6 +37,8 @@
 
 \usepackage{gentium}
 
+\usepackage{todonotes}
+
 \newcommand{\cat}[1]{\mathrm{#1}}
 \newcommand{\cohomtheorie}{{h}^{\ast}}
 \newcommand{\calz}{\mathcal{Z}}
@@ -60,6 +62,9 @@
 
 \tableofcontents
 
+% \todototoc
+% \listoftodos
+
 \newpage
 
 \section{Blakers-Massey Theorem}
@@ -76,29 +81,29 @@ Fill in later
 \label{sec:browns-repr-theor}
 
 In this section, we shall see that all reduced cohomology theories that satisfy the wedge sum
-($\dv$) axiom are representable functors, i.e. they are naturally isomorphic to the hom
-functor in the homotopy category $\cat{hCW}_{\ast}$. In particular, for a given reduced cohomology
-theory $\cohomtheorie$, we'll construct a sequence of spaces $\calz(n)$, which we'll call a
-spectrum, such that $\redco^n(X)$ is naturally isomorphic to $\left[X, \calz(n)\right]$.
+($\dv$) axiom are representable functors, i.e. they are naturally isomorphic to the hom functor in
+the homotopy category $\cat{hCW}_{\ast}$. In particular, for a given reduced cohomology theory
+$\cohomtheorie$, we'll construct a sequence of spaces $\calz(n)$, which we'll call a spectrum, such
+that $\redco^n(X)$ is naturally isomorphic to $\left[X, \calz(n)\right]$.
 
 \subsection{Spectra and cohomology theories}
 \label{sec:spectra-cohom-theor}
 
-\begin{defn}[$\Omega$-Prespectrum]
-  A prespectrum is a $\mathbb{Z}$ indexed sequence of pointed spaces $\calz(n)$ together with
+\begin{defn}[$\Omega$-Sprectrum]
+  A sprectrum is a $\mathbb{Z}$ indexed sequence of pointed spaces $\calz(n)$ together with
   structure maps $\sigma_n: \Sigma \calz(n) \to \calz(n+1)$. If the adjoints of the structure maps,
   i.e. the maps $\widetilde{\sigma}_n: \calz(n) \to \Omega \calz(n+1)$ are homotopy equivalences,
-  then the prespectrum is called an $\Omega$-prespectrum.
+  then the sprectrum is called an $\Omega$-sprectrum.
 \end{defn}
 
 \begin{prop}
-  Given a $\Omega$-prespectrum $\calz$, one can define the following functor.
+  Given a $\Omega$-sprectrum $\calz$, one can define the following functor.
   \begin{align*}
     \redco^n(X; \calz) = \left[X, \calz(n)\right]
   \end{align*}
   This is a contravariant functor which satisfies the homotopy invariance $(\mathrm{H})$, suspension
-  $(\mathrm{S})$, exactness $(\mathrm{E})$, and the wedge sum $(\dv)$ axiom. It is therefore
-  a reduced cohomology theory.
+  $(\mathrm{S})$, exactness $(\mathrm{E})$, and the wedge sum $(\dv)$ axiom. It is therefore a
+  reduced cohomology theory.
 \end{prop}
 
 \begin{proof}
@@ -107,8 +112,8 @@ spectrum, such that $\redco^n(X)$ is naturally isomorphic to $\left[X, \calz(n)\
   \item[Homotopy invariance (H):] This is obvious, because we are looking at homotopy classes of
     maps.
   \item[Suspension (S):] We need to show there is a natural isomorphism from $\redco^n(X)$ to
-    $\redco^{n+1}(\Sigma X)$. Note that the adjoint of the structure maps are homotopy equivalences.  We
-    therefore have a natural isomorphism.
+    $\redco^{n+1}(\Sigma X)$. Note that the adjoint of the structure maps are homotopy equivalences.
+    We therefore have a natural isomorphism.
     \begin{align*}
       \left[ X, \calz(n) \right] \cong \left[ X, \Omega \calz(n+1) \right]
     \end{align*}
@@ -127,28 +132,30 @@ spectrum, such that $\redco^n(X)$ is naturally isomorphic to $\left[X, \calz(n)\
     \begin{align*}
       [A, \calz(n)] \leftarrow [X, \calz(n)] \leftarrow \left[\left(X/A\right), \calz(n) \right]
     \end{align*}
-  \item[Wedge sum (DV):] The functor $[\cdot, \calz(n)]$ satisfies $(\dv)$ axiom. This is
-    fairly easy to check. That means $\redco^{\ast}$ satisfies $(\dv)$ axiom.
+  \item[Wedge sum (DV):] The functor $[\cdot, \calz(n)]$ satisfies $(\dv)$ axiom. This is fairly
+    easy to check. That means $\redco^{\ast}$ satisfies $(\dv)$ axiom.
   \end{description}
 \end{proof}
 
-{\color{red} To construct easy examples of spectra, one needs to check that filtered colimits
-  commute with the loop space functor, at least for nice enough spaces.}
+\todo[size=\tiny]{To construct easy examples of spectra, one needs to check that the filtered
+  colimits commute with the loop space functor, at least for nice enough spaces.}
+% {\color{red} To construct easy examples of spectra, one needs to check that filtered colimits
+% commute with the loop space functor, at least for nice enough spaces.}
 
 \subsection{Proof of Brown's representability theorem}
 \label{sec:proof-browns-repr}
 
-In the previous section, we saw that if we are given an $\Omega$-prespectrum, we can construct a
-reduced cohomology theory using the prespectrum. Brown's representability theorem is the converse of
-the previous theorem, i.e. given a reduced cohomology theory which satisfies the $(\dv)$
-axiom, it can be represented by an $\Omega$-prespectrum, which is unique up to homotopy. This
-theorem is fairly technical, and will require the use of the theorem on Milnor exact sequence
-(theorem \ref{thm-milnor}).
+In the previous section, we saw that if we are given an $\Omega$-sprectrum, we can construct a
+reduced cohomology theory using the sprectrum. Brown's representability theorem is the converse of
+the previous theorem, i.e. given a reduced cohomology theory which satisfies the $(\dv)$ axiom, it
+can be represented by an $\Omega$-sprectrum, which is unique up to homotopy. This theorem is
+fairly technical, and will require the use of the theorem on Milnor exact sequence (theorem
+\ref{thm-milnor}).
 
 \begin{thm}[Brown's representability theorem]
-  Let $\redco^{\ast}$ be a reduced cohomology theory satisfying the $(\dv)$ axiom. Then there is
-  an $\Omega$-prespectrum $\calz$ such that $\redco^{n}$ is naturally isomorphic to
-  $\left[\cdot, \calz(n) \right]$. Furthermore, this $\Omega$-prespectrum is unique up to homotopy.
+  Let $\redco^{\ast}$ be a reduced cohomology theory satisfying the $(\dv)$ axiom. Then there is an
+  $\Omega$-sprectrum $\calz$ such that $\redco^{n}$ is naturally isomorphic to
+  $\left[\cdot, \calz(n) \right]$. Furthermore, this $\Omega$-sprectrum is unique up to homotopy.
 \end{thm}
 
 \begin{proof}
@@ -159,8 +166,9 @@ theorem is fairly technical, and will require the use of the theorem on Milnor e
 
   Fix an $n \in \mathbb{Z}$. We will construct the space $\calz(n)$ as a CW complex, using finite
   dimensional skeletons $\calz(n)_k$. For each $k$, we will also pick a cohomology class $c_n(k)$ in
-  $\redco^n(\calz(n)_k)$ such that the map $d_n^{m}(k): \left[S^m, \calz(n)_k \right] \to \redco^n(S^m)$ is an
-  isomorphism for $m < k$ and surjection for $m=k$.
+  $\redco^n(\calz(n)_k)$ such that the map
+  $d_n^{m}(k): \left[S^m, \calz(n)_k \right] \to \redco^n(S^m)$ is an isomorphism for $m < k$ and
+  surjection for $m=k$ \todo[size=\tiny]{Show that this is a group homomorphism for $m \geq 1$}.
   \begin{align*}
     d_n^{m}(k) &: \left[ S^m, \calz(n)_k\right] \to \redco^n(S^m) \\
     d_n^{m}(k) &: [f] \mapsto f^{\ast}(c_n(k))
@@ -178,30 +186,34 @@ theorem is fairly technical, and will require the use of the theorem on Milnor e
   \begin{align*}
     c_n(0) := \prod_{\alpha \in \redco^n(S^0)} \alpha
   \end{align*}
-  Since $k=0$, we only need to show that $d_n^0(0)$ is a surjection. Pick any $\alpha \in \redco^n(S^0)$.
-  Corresponding to this $\alpha$, there's a copy of $S^0$ sitting inside $\calz(n)_0$. Let $f$ be
-  the inclusion map of this copy of $S^0$ into $\calz(n)_0$. Then the induced map on cohomology is
-  the projection map on the $\alpha$\textsuperscript{th} coordinate, since the cohomology theory
-  satisfies the $(\dv)$ axiom. Applying this induced map on $c_n(0)$, we see that in the
-  $\alpha$\textsuperscript{th} coordinate, it has $\alpha$, because of the way we defined it.  This shows the
-  map is surjective.
+  Since $k=0$, we only need to show that $d_n^0(0)$ is a surjection. Pick any
+  $\alpha \in \redco^n(S^0)$.  Corresponding to this $\alpha$, there's a copy of $S^0$ sitting
+  inside $\calz(n)_0$. Let $f$ be the inclusion map of this copy of $S^0$ into $\calz(n)_0$. Then
+  the induced map on cohomology is the projection map on the $\alpha$\textsuperscript{th}
+  coordinate, since the cohomology theory satisfies the $(\dv)$ axiom. Applying this induced map on
+  $c_n(0)$, we see that in the $\alpha$\textsuperscript{th} coordinate, it has $\alpha$, because of
+  the way we defined it.  This shows the map is surjective.
 
-  To prove the induction step, suppose we have defined the space $\calz(n)_k$ and $c_n(k)$ that satisfy the required
-  properties. Let $K_k \trianglelefteq \left[ S^k, \calz(n)_k \right]$ be the kernel of the map $d_n^k(k)$.
-  We construct the following map.
+  To prove the induction step, suppose we have defined the space $\calz(n)_k$ and $c_n(k)$ that
+  satisfy the required properties. Let $K_k \trianglelefteq \left[ S^k, \calz(n)_k \right]$
+  \todo[size=\tiny]{The cofibration probably works if you take a subset of $K_k$ that does not
+    contain the constant map} be the kernel of the map $d_n^k(k)$.  We construct the following map.
   \begin{align*}
     \phi_n(k): \bigvee_{x \in K_k} S^k \to \calz(n)_k \vee \bigvee_{y \in \redco^n(S^{k+1})} S^{k+1}
   \end{align*}
-  This map is obtained by taking the wedge of maps from $S^k$ to $\calz(n)_k$ which are contained in $K_k$.
-  This is a cofibration {\color{red} (Not sure how to show this, or whether this is entirely correct. Need to
-    check later)}. By the $(\dv)$ axiom, we have the following cohomology groups.
+  This map is obtained by taking the wedge of maps from $S^k$ to $\calz(n)_k$ which are contained in
+  $K_k$.  This is a cofibration \todo[size=\tiny]{Not sure how to show this, or whether this is
+    entirely correct. Need to check later}. By the $(\dv)$ axiom, we have the following cohomology
+  groups.
   \begin{align*}
     \redco^n \left( \calz(n)_k \vee \bigvee_{y \in \redco^n(S^{k+1})} S^{k+1} \right) = \redco^n(\calz(n)_k) \times \prod_{y \in \redco^n(S^{k+1})} \redco^n(S^{k+1})
   \end{align*}
-  From this, we can immediately see that the elements of $\redco^n \left( \calz(n)_k \vee \bigvee_{y \in \redco^n(S^{k+1})} S^{k+1} \right)$
-  of the form $(c_n(k), \bullet)$ (where $\bullet$ is any arbitrary element) is in the kernel of $\phi_n^{\ast}(k)$.
-  Define $\calz(n)_{k+1}$ to be the cofiber of the map $\phi_n(k)$, and let the map from to the cofiber be $b_n(k)$.
-  By the exactness axiom, we have that the following sequence is exact.
+  From this, we can immediately see that the elements of
+  $\redco^n \left( \calz(n)_k \vee \bigvee_{y \in \redco^n(S^{k+1})} S^{k+1} \right)$ of the form
+  $(c_n(k), \bullet)$ (where $\bullet$ is any arbitrary element) is in the kernel of
+  $\phi_n^{\ast}(k)$.  Define $\calz(n)_{k+1}$ to be the cofiber of the map $\phi_n(k)$, and let the
+  map to the cofiber be $b_n(k)$.  By the exactness axiom, we have that the following sequence is
+  exact.
   \begin{align*}
     \redco^n(\calz(n)_{k+1}) \xrightarrow{b_n^{\ast}(k)}  \redco^n(\calz(n)_k) \times \prod_{y \in \redco^n(S^{k+1})} \redco^n(S^{k+1})
     \xrightarrow{\phi_n^{\ast}(k)} \prod_{x \in K_k} \redco^n(S^k)
@@ -210,10 +222,11 @@ theorem is fairly technical, and will require the use of the theorem on Milnor e
   \begin{align*}
     A := \prod_{\alpha \in \redco^n(S^{k+1})} \alpha
   \end{align*}
-  The element $(c_n(k), A)$ lies in the kernel of $\phi_n^{\ast}(k)$, which means it lies in the image of
-  $b_n^{\ast}(k)$. We define $c_n(k+1)$ to be a pre-image of $(c_n(k), A)$. Seeing that the associated map
-  $d_n^m(k)$ is surjective for $m=k+1$ is easy enough. The proof is the same as that in the case
-  of $d_n^0(0)$.
+  The element $(c_n(k), A)$ lies in the kernel of $\phi_n^{\ast}(k)$, which means it lies in the
+  image of $b_n^{\ast}(k)$. We define $c_n(k+1)$ to be a pre-image of $(c_n(k), A)$. Seeing that the
+  associated map $d_n^m(k+1)$ is surjective for $m=k+1$ is easy enough. The proof is the same as
+  that in the case of $d_n^0(0)$\todo[size=\tiny]{Maybe write the proof anyways. See if it adds to
+    the clarity at all}.
 \end{proof}
 
 \newpage
@@ -235,9 +248,9 @@ theorem is fairly technical, and will require the use of the theorem on Milnor e
 \begin{defn}[$\lim^1$]
   Let $T$ be the category of towers of abelian groups, i.e. $\mathbb{N}$ indexed set of abelian
   groups $G_i$ with maps $f_i: G_i \to G_{i-1}$, and maps are set of arrows that make the whole
-  thing commute {\color{red} (Check that this category has enough injectives)}. Then $\lim$ is a
-  left exact functor from $T$ to $\cat{AbGrp}$ {\color{red} (This is easy to check)}, and we define
-  $\lim^1$ to be the first right derived functor of $\lim$.
+  thing commute \todo[size=\tiny]{Check that this category has enough injectives}. Then $\lim$ is a
+  left exact functor from $T$ to $\cat{AbGrp}$, and we define $\lim^1$ to be the first right derived
+  functor of $\lim$.
 \end{defn}
 
 \section{Some useful lemmas and theorems}
@@ -260,8 +273,8 @@ $\cat{TOP}_{\ast}$, and the proof is similar.
   C(i)$. But $J(\cdot, 1)$ collapses $A$ to a point. That means it factors through a $X/A$. This
   gives us a map $k$ from $X/A$ to $C(i)$.
 
-  The fact that these maps are homotopy inverses can be verified using the homotopy
-  $J$. ({\color{red} Not sure of this. Verify later.})
+  The fact that these maps are homotopy inverses can be verified \todo[size=\tiny]{Not sure of
+    this. Verify later.} using the homotopy $J$.
 \end{proof}
 
 \begin{lem}
@@ -305,8 +318,8 @@ $\cat{TOP}_{\ast}$, and the proof is similar.
 \end{thm}
 
 \begin{lem}[Characterizing cofibrations]
-  If $i: A \hookrightarrow X$ is a closed inclusion, and there is a retract $r: X \to A$,
-  then $i$ is a cofibration.
+  If $i: A \hookrightarrow X$ is a closed inclusion, and there is a retract $r: X \to A$, then $i$
+  is a cofibration.
 \end{lem}
 
 \begin{proof}
