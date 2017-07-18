@@ -62,8 +62,7 @@
 
 \tableofcontents
 
-% \todototoc
-% \listoftodos
+% \todototoc \listoftodos
 
 \newpage
 
@@ -90,10 +89,10 @@ that $\redco^n(X)$ is naturally isomorphic to $\left[X, \calz(n)\right]$.
 \label{sec:spectra-cohom-theor}
 
 \begin{defn}[$\Omega$-Spectrum]
-  A spectrum is a $\mathbb{Z}$ indexed sequence of pointed spaces $\calz(n)$ together with
-  structure maps $\sigma_n: \Sigma \calz(n) \to \calz(n+1)$. If the adjoints of the structure maps,
-  i.e. the maps $\widetilde{\sigma}_n: \calz(n) \to \Omega \calz(n+1)$ are homotopy equivalences,
-  then the spectrum is called an $\Omega$-spectrum.
+  A spectrum is a $\mathbb{Z}$ indexed sequence of pointed spaces $\calz(n)$ together with structure
+  maps $\sigma_n: \Sigma \calz(n) \to \calz(n+1)$. If the adjoints of the structure maps, i.e. the
+  maps $\widetilde{\sigma}_n: \calz(n) \to \Omega \calz(n+1)$ are homotopy equivalences, then the
+  spectrum is called an $\Omega$-spectrum.
 \end{defn}
 
 \begin{prop}
@@ -148,8 +147,8 @@ that $\redco^n(X)$ is naturally isomorphic to $\left[X, \calz(n)\right]$.
 In the previous section, we saw that if we are given an $\Omega$-spectrum, we can construct a
 reduced cohomology theory using the spectrum. Brown's representability theorem is the converse of
 the previous theorem, i.e. given a reduced cohomology theory which satisfies the $(\dv)$ axiom, it
-can be represented by an $\Omega$-spectrum, which is unique up to homotopy. This theorem is
-fairly technical, and will require the use of the theorem on Milnor exact sequence (theorem
+can be represented by an $\Omega$-spectrum, which is unique up to homotopy. This theorem is fairly
+technical, and will require the use of the theorem on Milnor exact sequence (theorem
 \ref{thm-milnor}).
 
 \begin{thm}[Brown's representability theorem]
@@ -226,14 +225,13 @@ fairly technical, and will require the use of the theorem on Milnor exact sequen
   image of $b_n^{\ast}(k)$. We define $c_n(k+1)$ to be a pre-image of $(c_n(k), A)$. Seeing that the
   associated map $d_n^m(k+1)$ is surjective for $m=k+1$ is easy enough. The proof is the same as
   that in the case of $d_n^0(0)$.\todo[size=\tiny]{Maybe write the proof anyways. See if it adds to
-    the clarity at all}
-  The trickier part is showing injectivity for $m < k+1$. Since $d_m^n(k)$ is a group homomorphism
-  (for $M \geq 1$), for $m \geq 1$, it will suffice to show the kernel is trivial.
-  \todo[size=\tiny]{I'm skipping the proof of the case when $m=0$. I think it should be fairly easy
-    once I figure out why the map is a cofibration.}
-  Pick an element, say $[f]$ in the kernel. We need to show that $f$ is a nullhomotopic map. But
-  at each step, we coned off the kernel of $d_n^m(m)$. That means $f$ is nullhomotopic. This shows
-  the injectivity and hence the isomorphism for $m  < k+1$.
+    the clarity at all} The trickier part is showing injectivity for $m < k+1$. Since $d_m^n(k)$ is
+  a group homomorphism (for $M \geq 1$), for $m \geq 1$, it will suffice to show the kernel is
+  trivial.  \todo[size=\tiny]{I'm skipping the proof of the case when $m=0$. I think it should be
+    fairly easy once I figure out why the map is a cofibration.}  Pick an element, say $[f]$ in the
+  kernel. We need to show that $f$ is a nullhomotopic map. But at each step, we coned off the kernel
+  of $d_n^m(m)$. That means $f$ is nullhomotopic. This shows the injectivity and hence the
+  isomorphism for $m < k+1$.
 
   Next, we define $\calz(n)$ the colimit of the following diagram.
   \begin{align*}
@@ -244,19 +242,18 @@ fairly technical, and will require the use of the theorem on Milnor exact sequen
   \begin{align*}
     0 \rightarrow {\lim_{k}}^1 \redco^{n-1} (\calz(n)_k) \rightarrow \redco^{n} (\calz(n)) \rightarrow \lim_{k} \redco^{n} (\calz(n)_k) \rightarrow 0
   \end{align*}
-  Furthermore the element $(c(n)_0, c(n)_1, c(n)_2, \ldots)$ lies in $\lim_{k} \redco^{n} (\calz(n)_k)$
-  since we pick $c(n)_{k+1}$ as a preimage of $c(n)_k$. By exactness, we get a preimage $c_n$ in
-  $\redco^{n} (\calz(n))$. We define a map $d_n^m: [S^m, \calz(n)] \to \redco^{n}(S^m)$ which sends
-  $[f]$ to $f^{\ast}(c_n)$. Because of the inductive construction, we know this is an isomorphism
-  for all $m \geq 0$ (To see this, observe that a map from a compact space like $S^m$ factors
-  through a finite stage in the colimit $\calz(n)$). This can be extended to a natural isomorphism
-  for all finite CW complexes.
-  \todo[size=\tiny]{Need to prove this, but can't think of a proof yet.
-    The five lemma might help}
-  Now that we know how to represent the individual functors $\redco^{n}$, we need to construct
-  the structure maps from the suspension homomorphism of the cohomology theory. Let $T_n$ be the
-  suspension homomorphism from $\redco^n(X)$ to $\redco^{n+1}(\Sigma X)$. If we set $X$ to be $\calz(n)$,
-  we have the following homomorphism.
+  Furthermore the element $(c(n)_0, c(n)_1, c(n)_2, \ldots)$ lies in
+  $\lim_{k} \redco^{n} (\calz(n)_k)$ since we pick $c(n)_{k+1}$ as a preimage of $c(n)_k$. By
+  exactness, we get a preimage $c_n$ in $\redco^{n} (\calz(n))$. We define a map
+  $d_n^m: [S^m, \calz(n)] \to \redco^{n}(S^m)$ which sends $[f]$ to $f^{\ast}(c_n)$. Because of the
+  inductive construction, we know this is an isomorphism for all $m \geq 0$ (To see this, observe
+  that a map from a compact space like $S^m$ factors through a finite stage in the colimit
+  $\calz(n)$). This can be extended to a natural isomorphism for all finite CW complexes.
+  \todo[size=\tiny]{Need to prove this, but can't think of a proof yet.  The five lemma might help}
+  Now that we know how to represent the individual functors $\redco^{n}$, we need to construct the
+  structure maps from the suspension homomorphism of the cohomology theory. Let $T_n$ be the
+  suspension homomorphism from $\redco^n(X)$ to $\redco^{n+1}(\Sigma X)$. If we set $X$ to be
+  $\calz(n)$, we have the following homomorphism.
   \begin{align*}
     T_n: \redco^n(\calz(n)) \to \redco^{n+1}(\Sigma \calz(n+1))
   \end{align*}
@@ -264,8 +261,8 @@ fairly technical, and will require the use of the theorem on Milnor exact sequen
   \begin{align*}
     \widetilde{T}_n: [\calz(n), \calz(n)] \to [\Sigma \calz(n), \calz(n+1)]
   \end{align*}
-  We do the most obvious thing, i.e. apply $\widetilde{T}_n$ to the homotopy class of the
-  identity map, and we pick a map to be our structure map from the resulting homotopy class.
+  We do the most obvious thing, i.e. apply $\widetilde{T}_n$ to the homotopy class of the identity
+  map, and we pick a map to be our structure map from the resulting homotopy class.
   \todo[size=\tiny]{Show that this forms an $\Omega$-spectrum}
 
 \end{proof}
