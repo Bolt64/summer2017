@@ -155,7 +155,7 @@ fairly technical, and will require the use of the theorem on Milnor exact sequen
 \begin{thm}[Brown's representability theorem]
   Let $\redco^{\ast}$ be a reduced cohomology theory satisfying the $(\dv)$ axiom. Then there is an
   $\Omega$-spectrum $\calz$ such that $\redco^{n}$ is naturally isomorphic to
-  $\left[\cdot, \calz(n) \right]$. Furthermore, this $\Omega$-spectrum is unique up to homotopy.
+  $\left[\cdot, \calz(n) \right]$.
 \end{thm}
 
 \begin{proof}
@@ -225,12 +225,12 @@ fairly technical, and will require the use of the theorem on Milnor exact sequen
   The element $(c_n(k), A)$ lies in the kernel of $\phi_n^{\ast}(k)$, which means it lies in the
   image of $b_n^{\ast}(k)$. We define $c_n(k+1)$ to be a pre-image of $(c_n(k), A)$. Seeing that the
   associated map $d_n^m(k+1)$ is surjective for $m=k+1$ is easy enough. The proof is the same as
-  that in the case of $d_n^0(0)$\todo[size=\tiny]{Maybe write the proof anyways. See if it adds to
-    the clarity at all}.
+  that in the case of $d_n^0(0)$.\todo[size=\tiny]{Maybe write the proof anyways. See if it adds to
+    the clarity at all}
   The trickier part is showing injectivity for $m < k+1$. Since $d_m^n(k)$ is a group homomorphism
-  (for $M \geq 1$), for $m \geq 1$, it will suffice to show the kernel is trivial
+  (for $M \geq 1$), for $m \geq 1$, it will suffice to show the kernel is trivial.
   \todo[size=\tiny]{I'm skipping the proof of the case when $m=0$. I think it should be fairly easy
-    once I figure out why the map is a cofibration.}.
+    once I figure out why the map is a cofibration.}
   Pick an element, say $[f]$ in the kernel. We need to show that $f$ is a nullhomotopic map. But
   at each step, we coned off the kernel of $d_n^m(m)$. That means $f$ is nullhomotopic. This shows
   the injectivity and hence the isomorphism for $m  < k+1$.
@@ -249,9 +249,30 @@ fairly technical, and will require the use of the theorem on Milnor exact sequen
   $\redco^{n} (\calz(n))$. We define a map $d_n^m: [S^m, \calz(n)] \to \redco^{n}(S^m)$ which sends
   $[f]$ to $f^{\ast}(c_n)$. Because of the inductive construction, we know this is an isomorphism
   for all $m \geq 0$ (To see this, observe that a map from a compact space like $S^m$ factors
-  through a finite stage in the colimit $\calz(n)$). 
+  through a finite stage in the colimit $\calz(n)$). This can be extended to a natural isomorphism
+  for all finite CW complexes.
+  \todo[size=\tiny]{Need to prove this, but can't think of a proof yet.
+    The five lemma might help}
+  Now that we know how to represent the individual functors $\redco^{n}$, we need to construct
+  the structure maps from the suspension homomorphism of the cohomology theory. Let $T_n$ be the
+  suspension homomorphism from $\redco^n(X)$ to $\redco^{n+1}(\Sigma X)$. If we set $X$ to be $\calz(n)$,
+  we have the following homomorphism.
+  \begin{align*}
+    T_n: \redco^n(\calz(n)) \to \redco^{n+1}(\Sigma \calz(n+1))
+  \end{align*}
+  But this is equivalent to the following homomorphism.
+  \begin{align*}
+    \widetilde{T}_n: [\calz(n), \calz(n)] \to [\Sigma \calz(n), \calz(n+1)]
+  \end{align*}
+  We do the most obvious thing, i.e. apply $\widetilde{T}_n$ to the homotopy class of the
+  identity map, and we pick a map to be our structure map from the resulting homotopy class.
+  \todo[size=\tiny]{Show that this forms an $\Omega$-spectrum}
 
 \end{proof}
+
+This result enables us to study any reduced cohomology theory by studying its associated spectrum.
+This lets us study many cohomology theories that were intractable by the usual methods, e.g.
+cobordism, which is represented by the Thom spectrum.
 
 \newpage
 
