@@ -38,6 +38,7 @@
     "calz"
     "redco"
     "dv"
+    "coker"
     "colim")
    (LaTeX-add-labels
     "sec:blak-mass-theor"

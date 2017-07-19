@@ -44,6 +44,7 @@
 \newcommand{\calz}{\mathcal{Z}}
 \newcommand{\redco}{\widetilde{h}}
 \newcommand{\dv}{\mathrm{DV}}
+\newcommand{\coker}{\mathrm{coker}}
 
 \makeatletter
 \newcommand{\colim@}[2]{%
@@ -355,18 +356,18 @@ $\cat{TOP}_{\ast}$, and the proof is similar.
   This means the map factors through at some finite stage.
 \end{proof}
 
-\begin{thm}[Cofiber sequence]
-  Put in result
-\end{thm}
+% \begin{thm}[Cofiber sequence]
+%   Put in result
+% \end{thm}
 
-\begin{lem}[Characterizing cofibrations]
-  If $i: A \hookrightarrow X$ is a closed inclusion, and there is a retract $r: X \to A$, then $i$
-  is a cofibration.
-\end{lem}
+% \begin{lem}[Characterizing cofibrations]
+%   If $i: A \hookrightarrow X$ is a closed inclusion, and there is a retract $r: X \to A$, then $i$
+%   is a cofibration.
+% \end{lem}
 
-\begin{proof}
-  fill in later
-\end{proof}
+% \begin{proof}
+%   fill in later
+% \end{proof}
 
 \begin{thm}[Alternative characterization of $\lim^1$]
   If $F$ is an object in the tower category, then $\lim^1(F)$ is the cokernel of the following map.
@@ -377,7 +378,95 @@ $\cat{TOP}_{\ast}$, and the proof is similar.
 \end{thm}
 
 \begin{proof}
-  fill in later
+  The first step in characterizing ${\lim}^1$ in the following manner is to pick an appropriate
+  injective resolution. Let $F$ be a tower of abelian groups and $I$ an injective tower it maps
+  into via a monomorphism $m$.
+  \[
+    \begin{tikzcd}
+      F_0 \ar[d, rightarrowtail, "m_0"] & F_1 \ar[swap]{l}{f_1} \ar[d, rightarrowtail, "m_1"] & F_2 \ar[swap]{l}{f_2} \ar[d, rightarrowtail, "m_2"] & F_3 \ar[swap]{l}{f_3} \ar[d, rightarrowtail, "m_3"] & \cdots \ar[swap]{l}{f_4} \\
+      I_0 & I_1 \ar[swap]{l}{i_1} & I_2 \ar[swap]{l}{i_2} & I_3 \ar[swap]{l}{i_3} & \cdots \ar[swap]{l}{i_4}
+    \end{tikzcd}
+  \]
+
+Without losing any generality, we can assume all the maps $i_k$ in $I$ are surjective. Otherwise, we just
+replace $I_k$ by $\bigoplus_{j=0}^k I_j$, and have the maps on all but the last coordinate be the identity.
+This is important, because we'll need surjectivity of the maps later. We can now construct an injective
+resolution of $F$ as the following exact sequence.
+
+\begin{align*}
+  0 \xrightarrow{} F \xrightarrow{m} I \xrightarrow{q} \coker(m) \xrightarrow{} 0
+\end{align*}
+The first derived functor is the homology at $\lim(\coker(m))$ of the following sequence.
+
+\begin{align*}
+  0 \xrightarrow{} \lim(F) \xrightarrow{\lim(m)} \lim(I) \xrightarrow{\lim(q)} \lim(\coker(m)) \xrightarrow{} 0
+\end{align*}
+
+Now, just like $\alpha_F$ was defined in the statement of the theorem, we define $\alpha_I$ and $\alpha_{\coker(m)}$.
+Then we get the following short exact sequence of chain complexes (the rows are exact).
+
+\[
+  \begin{tikzcd}
+    & 0 \ar[d] & 0 \ar[d] & 0 \ar[d] & \\
+    0 \ar[r] & \prod_{i} F_i \ar[r, "m"] \ar[d, swap, "\alpha_F"] & \prod_{i} I_i \ar[r, "q"] \ar[d, swap, "\alpha_I"] & \prod_{i} \coker(m) \ar[r] \ar[d, swap, "\alpha_{\coker(m)}"] & 0 \\
+    0 \ar[r] & \prod_{i} F_i \ar[r, "m"] \ar[d] & \prod_{i} I_i \ar[r, "q"] \ar[d] & \prod_{i} \coker(m) \ar[r] \ar[d] & 0 \\
+    & 0 & 0 & 0 & 
+  \end{tikzcd}
+\]
+We can apply the snake lemma to get the following long exact sequence.
+\[
+  \begin{tikzpicture}[descr/.style={fill=white,inner sep=1.5pt}]
+    \matrix (m) [ matrix of math nodes, row sep=1em, column sep=2.5em, text height=1.5ex, text
+    depth=0.25ex ]
+    { 0 & \ker(\alpha_F) & \ker(\alpha_I) & \ker(\alpha_{\coker(m)}) & \\
+     & \coker(\alpha_F) & \coker(\alpha_I) & \coker(\alpha_{\coker(m)}) & 0 \\
+    };
+
+    \path[overlay,->, font=\scriptsize,>=latex]
+    (m-1-1) edge (m-1-2)
+    (m-1-2) edge node[yshift=0.7ex]{$m_{\ast}$} (m-1-3)
+    (m-1-3) edge node[yshift=0.7ex]{$q_{\ast}$} (m-1-4)
+    (m-1-4) edge[out=355,in=175] node[descr,yshift=0.3ex] {$\partial$} (m-2-2)
+    (m-2-2) edge node[yshift=0.7ex]{$m^{\ast}$} (m-2-3)
+    (m-2-3) edge node[yshift=0.7ex]{$q^{\ast}$} (m-2-4)
+    (m-2-4) edge (m-2-5);
+  \end{tikzpicture}
+\]
+But we see from the definition of $\lim$ that the kernels of $\alpha$ are precisely
+the $\lim$. Thus we have the following long exact sequence.
+\[
+  \begin{tikzpicture}[descr/.style={fill=white,inner sep=1.5pt}]
+    \matrix (m) [ matrix of math nodes, row sep=1em, column sep=2.5em, text height=1.5ex, text
+    depth=0.25ex ]
+    { 0 & \lim(F) & \lim(I) & \lim(\coker(m)) & \\
+     & \coker(\alpha_F) & \coker(\alpha_I) & \coker(\alpha_{\coker(m)}) & 0 \\
+    };
+
+    \path[overlay,->, font=\scriptsize,>=latex]
+    (m-1-1) edge (m-1-2)
+    (m-1-2) edge node[yshift=0.7ex]{$\lim(m)$} (m-1-3)
+    (m-1-3) edge node[yshift=0.7ex]{$\lim(q)$} (m-1-4)
+    (m-1-4) edge[out=355,in=175] node[descr,yshift=0.3ex] {$\partial$} (m-2-2)
+    (m-2-2) edge node[yshift=0.7ex]{$m^{\ast}$} (m-2-3)
+    (m-2-3) edge node[yshift=0.7ex]{$q^{\ast}$} (m-2-4)
+    (m-2-4) edge (m-2-5);
+  \end{tikzpicture}
+\]
+
+The last step in the proof will be to show that $\coker(\alpha_I)$ is $0$, in which
+case ${\lim}^1(F)$ is isomorphic to $\coker(\alpha_F)$. Showing that $\coker(\alpha_I)$
+is $0$ is equivalent to showing that $\alpha_I$ is surjective. To see this, pick any element
+$(j_0, j_1, j_2, \ldots) \in \prod_i I_i$. We need to find an element $(k_0, k_1, k_2, k_3, \ldots)$
+such that we have the following equalities.
+\begin{align*}
+  j_0 &= k_0 - i_1(k_1) \\
+  j_1 &= k_1 - i_2(k_2) \\
+  j_2 &= k_2 - i_3(k_3) \\
+  &\vdots
+\end{align*}
+But notice that we constructed $I$ such that all the $i_k$ are surjective. That means this system of
+equations can be solved simultaneously and $\coker(\alpha_I)$ is $0$. This shows the result.
+
 \end{proof}
 
 \begin{thm}[Milnor exact sequence] \label{thm-milnor} If $\{ i_n : X_n \hookrightarrow X_{n+1} \}$
