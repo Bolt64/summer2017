@@ -48,6 +48,7 @@
     "sec:proof-browns-repr"
     "sec:definitions-notation"
     "sec:some-useful-lemmas"
+    "thm-lim1"
     "thm-milnor")
    (LaTeX-add-amsthm-newtheorems
     "thm"

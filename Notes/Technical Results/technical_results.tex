@@ -75,7 +75,74 @@ Fill in later
 \section{Comparison theorem for cohomology theories}
 \label{sec:comp-theor-cohom}
 
-Fill in later
+\begin{thm}[Comparison Theorem]
+  If $h$ and $k$ are two reduced cohomology theories satisfying the $(\mathrm{DV})$ axiom, such that
+  there exists a natural transformation $\chi$ from $h^{\ast}$ to $k^{\ast}$ and $\chi$ induces a
+  natural isomorphism from $h^n(S^0)$ to $k^n(S^0)$ for all $n$, then $\chi$ is a natural
+  isomorphism of cohomology theories.
+\end{thm}
+
+\begin{proof}
+  First, we'll use a simple reduction. For any pointed space $X$, we'll show if $\chi$ is an
+  isomorphism from $h^n(X_+)$ to $k^n(X_+)$, then $\chi$ is an isomorphism between $h^n(X)$ and
+  $k^n(X)$.  Here, $X_+$ is the space $X \amalg {+}$, with the basepoint being $+$. Consider the
+  following cofiber sequence.
+  \begin{align*}
+    S^0 \xrightarrow{i} X_+ \xrightarrow{} X
+  \end{align*}
+  The map from $S^0$ to $X_+$ sends the basepoint of $S^0$ to $+$, and the other point to the
+  original basepoint of $X$. This cofiber sequence splits, which means an isomorphism from
+  $h^n(X_+)$ to $k^n(X_+)$ is equivalent to an isomorphism from $h(X)$ to $k(X)$ (by the five
+  lemma).
+
+  The next step in the proof is to show the isomorphism for finite CW complexes. This will be done
+  by showing the isomorphism for $S^n$ and $D^n$ for all $n$, and then using the fact that all
+  finite CW complexes are pushouts of disks and spheres. We have an isomorphism on all spheres from
+  the suspension isomorphism, and that extends to wedges of spheres. And since all disks are
+  contractible, we have an isomorphism there as well. This also tells us that $\chi$ is an
+  isomorphism from $0$-dimensional CW complexes. We'll proceed by induction at this point. An $n$
+  skeleton is defined by the following pushout.
+  \[
+    \begin{tikzcd}
+      \coprod S_+^n \ar[d] \ar[r] & X^{(n-1)}_+ \ar[dashrightarrow, d] \\
+      \coprod D_+^n \ar[dashrightarrow, r] & X^{(n)}_+ \\
+    \end{tikzcd}
+  \]
+  We then apply the Mayer-Vietoris sequence to the subspaces $\coprod D_+^n$ and $X^{(n-1)}_+$. Call
+  these subspaces $T_1$ and $T_2$. Their intersection $T_0$ is the wedge of spheres.
+  \[
+    \begin{tikzpicture}[baseline= (a).base]
+      \node[scale=.90] (a) at (0,0){
+        \begin{tikzcd}
+          h^{n+1}(T_1) \oplus h^{n+1}(T_2) \ar[d , "\cong"] & h^{n+1}(T_0) \ar[l] \ar[d , "\cong"]& h^n(X^{(n)}) \ar[l] \ar[d, "\chi"] & h^{n+1}(T_1) \oplus h^{n+1}(T_2) \ar[l] \ar[d , "\cong"]& h^{n+1}(T_0) \ar[l] \ar[d , "\cong"]\\
+          k^{n+1}(T_1) \oplus k^{n+1}(T_2) & k^{n+1}(T_0) \ar[l] & k^n(X^{(n)}) \ar[l] & k^{n+1}(T_1) \oplus k^{n+1}(T_2) \ar[l] & k^{n+1}(T_0) \ar[l] \\
+        \end{tikzcd}
+      };
+    \end{tikzpicture}
+  \]
+  By the induction hypothesis, all but the middle arrows are isomorphisms, hence by the five lemma,
+  $\chi$ is an isomorphism too. This shows $\chi$ is a natural isomorphism for finite dimensional CW
+  complexes.
+
+  The final step is to show this for infinite dimensional CW complexes. This will require the use of
+  Milnor's theorem \ref{thm-milnor}. For any infinite dimensional CW complex $X$, take the
+  filtration consisting of its finite dimensional skeletons. Then we have maps between the following
+  short exact sequences.
+  \[
+    \begin{tikzpicture}
+      \node[scale=1] (a) at (0,0) {
+        \begin{tikzcd}
+          0 \ar[r] \ar[d, "\cong"] & {\lim_n}^1 h^{q-1}(X^{(n)}) \ar[r] \ar[d, "\cong"]& h^q(X) \ar[r] \ar[d, "\chi"] & \lim_n h^q(X^{(n)}) \ar[r] \ar[d, "\cong"]& 0 \ar[d, "\cong"]\\
+          0 \ar[r] & {\lim_n}^1 k^{q-1}(X^{(n)}) \ar[r] & k^q(X) \ar[r] & \lim_n k^q(X^{(n)}) \ar[r] & 0 \\
+        \end{tikzcd}
+      };
+    \end{tikzpicture}
+  \]
+  By the proof for the finite dimensional case, we have the all but the middle arrow are
+  isomorphisms. By the five lemma, we get the middle arrow is an isomorphism too, which concludes
+  the proof.
+  
+\end{proof}
 
 \section{Brown's representability theorem}
 \label{sec:browns-repr-theor}
@@ -369,7 +436,7 @@ $\cat{TOP}_{\ast}$, and the proof is similar.
 %   fill in later
 % \end{proof}
 
-\begin{thm}[Alternative characterization of $\lim^1$]
+\begin{thm}[Alternative characterization of $\lim^1$]\label{thm-lim1} 
   If $F$ is an object in the tower category, then $\lim^1(F)$ is the cokernel of the following map.
   \begin{align*}
     \alpha_F : \prod_{i \in \mathbb{N}} F_i &\to \prod_{i \in \mathbb{N}} F_i \\
@@ -379,19 +446,20 @@ $\cat{TOP}_{\ast}$, and the proof is similar.
 
 \begin{proof}
   The first step in characterizing ${\lim}^1$ in the following manner is to pick an appropriate
-  injective resolution. Let $F$ be a tower of abelian groups and $I$ an injective tower it maps
-  into via a monomorphism $m$.
+  injective resolution. Let $F$ be a tower of abelian groups and $I$ an injective tower it maps into
+  via a monomorphism $m$.
   \[
     \begin{tikzcd}
       F_0 \ar[d, rightarrowtail, "m_0"] & F_1 \ar[swap]{l}{f_1} \ar[d, rightarrowtail, "m_1"] & F_2 \ar[swap]{l}{f_2} \ar[d, rightarrowtail, "m_2"] & F_3 \ar[swap]{l}{f_3} \ar[d, rightarrowtail, "m_3"] & \cdots \ar[swap]{l}{f_4} \\
-      I_0 & I_1 \ar[swap]{l}{i_1} & I_2 \ar[swap]{l}{i_2} & I_3 \ar[swap]{l}{i_3} & \cdots \ar[swap]{l}{i_4}
+      I_0 & I_1 \ar[swap]{l}{i_1} & I_2 \ar[swap]{l}{i_2} & I_3 \ar[swap]{l}{i_3} & \cdots
+      \ar[swap]{l}{i_4}
     \end{tikzcd}
   \]
 
-Without losing any generality, we can assume all the maps $i_k$ in $I$ are surjective. Otherwise, we just
-replace $I_k$ by $\bigoplus_{j=0}^k I_j$, and have the maps on all but the last coordinate be the identity.
-This is important, because we'll need surjectivity of the maps later. We can now construct an injective
-resolution of $F$ as the following exact sequence.
+  Without losing any generality, we can assume all the maps $i_k$ in $I$ are surjective. Otherwise,
+  we just replace $I_k$ by $\bigoplus_{j=0}^k I_j$, and have the maps on all but the last coordinate
+  be the identity.  This is important, because we'll need surjectivity of the maps later. We can now
+  construct an injective resolution of $F$ as the following exact sequence.
 
 \begin{align*}
   0 \xrightarrow{} F \xrightarrow{m} I \xrightarrow{q} \coker(m) \xrightarrow{} 0
@@ -402,15 +470,16 @@ The first derived functor is the homology at $\lim(\coker(m))$ of the following 
   0 \xrightarrow{} \lim(F) \xrightarrow{\lim(m)} \lim(I) \xrightarrow{\lim(q)} \lim(\coker(m)) \xrightarrow{} 0
 \end{align*}
 
-Now, just like $\alpha_F$ was defined in the statement of the theorem, we define $\alpha_I$ and $\alpha_{\coker(m)}$.
-Then we get the following short exact sequence of chain complexes (the rows are exact).
+Now, just like $\alpha_F$ was defined in the statement of the theorem, we define $\alpha_I$ and
+$\alpha_{\coker(m)}$.  Then we get the following short exact sequence of chain complexes (the rows
+are exact).
 
 \[
   \begin{tikzcd}
     & 0 \ar[d] & 0 \ar[d] & 0 \ar[d] & \\
     0 \ar[r] & \prod_{i} F_i \ar[r, "m"] \ar[d, swap, "\alpha_F"] & \prod_{i} I_i \ar[r, "q"] \ar[d, swap, "\alpha_I"] & \prod_{i} \coker(m) \ar[r] \ar[d, swap, "\alpha_{\coker(m)}"] & 0 \\
     0 \ar[r] & \prod_{i} F_i \ar[r, "m"] \ar[d] & \prod_{i} I_i \ar[r, "q"] \ar[d] & \prod_{i} \coker(m) \ar[r] \ar[d] & 0 \\
-    & 0 & 0 & 0 & 
+    & 0 & 0 & 0 &
   \end{tikzcd}
 \]
 We can apply the snake lemma to get the following long exact sequence.
@@ -419,50 +488,46 @@ We can apply the snake lemma to get the following long exact sequence.
     \matrix (m) [ matrix of math nodes, row sep=1em, column sep=2.5em, text height=1.5ex, text
     depth=0.25ex ]
     { 0 & \ker(\alpha_F) & \ker(\alpha_I) & \ker(\alpha_{\coker(m)}) & \\
-     & \coker(\alpha_F) & \coker(\alpha_I) & \coker(\alpha_{\coker(m)}) & 0 \\
+      & \coker(\alpha_F) & \coker(\alpha_I) & \coker(\alpha_{\coker(m)}) & 0 \\
     };
 
-    \path[overlay,->, font=\scriptsize,>=latex]
-    (m-1-1) edge (m-1-2)
-    (m-1-2) edge node[yshift=0.7ex]{$m_{\ast}$} (m-1-3)
-    (m-1-3) edge node[yshift=0.7ex]{$q_{\ast}$} (m-1-4)
-    (m-1-4) edge[out=355,in=175] node[descr,yshift=0.3ex] {$\partial$} (m-2-2)
-    (m-2-2) edge node[yshift=0.7ex]{$m^{\ast}$} (m-2-3)
-    (m-2-3) edge node[yshift=0.7ex]{$q^{\ast}$} (m-2-4)
-    (m-2-4) edge (m-2-5);
+    \path[overlay,->, font=\scriptsize,>=latex] (m-1-1) edge (m-1-2) (m-1-2) edge
+    node[yshift=0.7ex]{$m_{\ast}$} (m-1-3) (m-1-3) edge
+    node[yshift=0.7ex]{$q_{\ast}$} (m-1-4) (m-1-4) edge[out=355,in=175] node[descr,yshift=0.3ex]
+    {$\partial$} (m-2-2) (m-2-2) edge
+    node[yshift=0.7ex]{$m^{\ast}$} (m-2-3) (m-2-3) edge
+    node[yshift=0.7ex]{$q^{\ast}$} (m-2-4) (m-2-4) edge (m-2-5);
   \end{tikzpicture}
 \]
-But we see from the definition of $\lim$ that the kernels of $\alpha$ are precisely
-the $\lim$. Thus we have the following long exact sequence.
+But we see from the definition of $\lim$ that the kernels of $\alpha$ are precisely the $\lim$. Thus
+we have the following long exact sequence.
 \[
   \begin{tikzpicture}[descr/.style={fill=white,inner sep=1.5pt}]
     \matrix (m) [ matrix of math nodes, row sep=1em, column sep=2.5em, text height=1.5ex, text
     depth=0.25ex ]
     { 0 & \lim(F) & \lim(I) & \lim(\coker(m)) & \\
-     & \coker(\alpha_F) & \coker(\alpha_I) & \coker(\alpha_{\coker(m)}) & 0 \\
+      & \coker(\alpha_F) & \coker(\alpha_I) & \coker(\alpha_{\coker(m)}) & 0 \\
     };
 
-    \path[overlay,->, font=\scriptsize,>=latex]
-    (m-1-1) edge (m-1-2)
-    (m-1-2) edge node[yshift=0.7ex]{$\lim(m)$} (m-1-3)
-    (m-1-3) edge node[yshift=0.7ex]{$\lim(q)$} (m-1-4)
-    (m-1-4) edge[out=355,in=175] node[descr,yshift=0.3ex] {$\partial$} (m-2-2)
-    (m-2-2) edge node[yshift=0.7ex]{$m^{\ast}$} (m-2-3)
-    (m-2-3) edge node[yshift=0.7ex]{$q^{\ast}$} (m-2-4)
-    (m-2-4) edge (m-2-5);
+    \path[overlay,->, font=\scriptsize,>=latex] (m-1-1) edge (m-1-2) (m-1-2) edge
+    node[yshift=0.7ex]{$\lim(m)$} (m-1-3) (m-1-3) edge
+    node[yshift=0.7ex]{$\lim(q)$} (m-1-4) (m-1-4) edge[out=355,in=175] node[descr,yshift=0.3ex]
+    {$\partial$} (m-2-2) (m-2-2) edge
+    node[yshift=0.7ex]{$m^{\ast}$} (m-2-3) (m-2-3) edge
+    node[yshift=0.7ex]{$q^{\ast}$} (m-2-4) (m-2-4) edge (m-2-5);
   \end{tikzpicture}
 \]
 
-The last step in the proof will be to show that $\coker(\alpha_I)$ is $0$, in which
-case ${\lim}^1(F)$ is isomorphic to $\coker(\alpha_F)$. Showing that $\coker(\alpha_I)$
-is $0$ is equivalent to showing that $\alpha_I$ is surjective. To see this, pick any element
+The last step in the proof will be to show that $\coker(\alpha_I)$ is $0$, in which case
+${\lim}^1(F)$ is isomorphic to $\coker(\alpha_F)$. Showing that $\coker(\alpha_I)$ is $0$ is
+equivalent to showing that $\alpha_I$ is surjective. To see this, pick any element
 $(j_0, j_1, j_2, \ldots) \in \prod_i I_i$. We need to find an element $(k_0, k_1, k_2, k_3, \ldots)$
 such that we have the following equalities.
 \begin{align*}
   j_0 &= k_0 - i_1(k_1) \\
   j_1 &= k_1 - i_2(k_2) \\
   j_2 &= k_2 - i_3(k_3) \\
-  &\vdots
+      &\vdots
 \end{align*}
 But notice that we constructed $I$ such that all the $i_k$ are surjective. That means this system of
 equations can be solved simultaneously and $\coker(\alpha_I)$ is $0$. This shows the result.
@@ -470,16 +535,64 @@ equations can be solved simultaneously and $\coker(\alpha_I)$ is $0$. This shows
 \end{proof}
 
 \begin{thm}[Milnor exact sequence] \label{thm-milnor} If $\{ i_n : X_n \hookrightarrow X_{n+1} \}$
-  for $n \in \mathbb{N}$ are a sequence of nested CW subcomplexes such that $X = \bigcup_n X_n$, and
-  $\redco^{\ast}$ is a reduced cohomology theory, then we have the following exact sequence for all
-  $i \geq 1$.
+  for $n \in \mathbb{N}$ are a sequence of nested (pointed) CW subcomplexes such that
+  $X = \bigcup_n X_n$, and $\redco^{\ast}$ is a reduced cohomology theory, then we have the
+  following exact sequence for all $i \geq 1$.
   \begin{align*}
     0 \rightarrow {\lim_{n}}^1 \redco^{i-1}(X_n) \rightarrow \redco^i(X) \rightarrow \lim_n \redco^i(X_n) \rightarrow 0
   \end{align*}
 \end{thm}
 
 \begin{proof}
-  fill in later
+  We first construct the mapping telescope of the inclusions. We start with the (unpointed) space
+  $X \times \mathbb{R}_+$.  We then consider the following subspace $S$.
+  \begin{align*}
+    S = \bigcup_{i \in \mathbb{N}} X_i \times [i,i+1]
+  \end{align*}
+  We then quotient $S$ by the subspace ${\ast} \times \mathbb{R}_+$ and we use the quotient out
+  space as the basepoint of the pointed mapping telescope $T$.
+
+  We define two subspaces of the mapping telescope; we'll apply Mayer-Vietoris to these subspaces.
+  \begin{align*}
+    T_1 &:= \bigcup_{i \in \mathbb{N}} X_{2i+1} \times [2i+1, 2i+2] \\
+    T_2 &:= \bigcup_{i \in \mathbb{N}} X_{2i} \times [2i, 2i+1] 
+  \end{align*}
+  To be more precise, we should be taking open neighbourhoods of these spaces to apply
+  Mayer-Vietoris, but the open neighbourhoods deformation retract to these spaces anyways, so it's
+  alright.  Observe that the intersection $T_0$ of $T_1$ and $T_2$ is homeomorphic to the wedge of
+  all the $X_i$.  By similar reasoning (although we replace homeomorphism by homotopy equivalence),
+  we get that $T_1$ is homotopy equivalent to the wedge of all the $X_i$ for odd $i$ and $T_2$ the
+  wedge of $X_i$ for all even $i$. We consider the Mayer-Vietoris sequence, and use the
+  $(\mathrm{DV})$ axiom to get isomorphisms.
+  \[
+    \begin{tikzcd}
+      \redco^{q+1}(T) & \redco^{q}(T_0) \ar[l] \ar[d, "\cong"] & \redco^{q}(T_1) \oplus \redco^{q}(T_2) \ar[l, swap, "\phi_q"] \ar[d, "\cong"] & \redco^{q+1}(T) \ar[l] \\
+      & \prod_{i \in \mathbb{N}} \redco^{q}(X_i) \ar[dl, swap, "\cdot (-1)^i"] & \prod_{i \in \mathbb{N}} \redco^{q}(X_{2i}) \oplus \prod_{i \in \mathbb{N}} \redco^{q}(X_{2i+1}) \ar[dll, "m_q"] &   \\
+      \prod_{i \in \mathbb{N}} \redco^{q}(X_i) & & & \\
+    \end{tikzcd}
+  \]
+  We need to determine how the map $m_q$ should be defined to make the diagram commute.  We do this
+  by seeing how the map behaves on the basis. First, we take $x_0 \in \redco^{q}(X_0)$. The first
+  isomorphism takes it to $(x, 0)$, the map $\phi_q$ takes it $x-0$ and finally it goes to
+  $x$. Next, we see how $x_1 \in \redco^{q}(X_1)$ behaves. It first gets sent to
+  $(i_0^{\ast}x_1, x_1)$ and then to $i_0^{\ast}x_1 - x_1$.  Finally, the $(-1)^i$ sends it to
+  $x_1 - i_0^{\ast}x_1$. Similarly, $x_2 \in \redco^{q}(X_2)$ gets sent to $x_2-i_1^{\ast}x_2$, and
+  so go on the rest of the basis elements. We now have the following long exact sequence.
+  \[
+    \begin{tikzcd}
+      \redco^{q+1}(T) & \prod_{i \in \mathbb{N}}\redco^{q} (X_i) \ar[l] & \prod_{i \in \mathbb{N}}\redco^{q} (X_i) \ar[swap, l, "m_q"] & \redco^{q}(T) \ar[l] \\
+    \end{tikzcd}
+  \]
+
+  From this, we get the following short exact sequence.
+  \[
+    \begin{tikzcd}
+      0 & \ker(m_q) \ar[l] & \redco^{q}(T) \ar[l] & \coker(m_{q-1}) \ar[l] & 0 \ar[l] \\
+    \end{tikzcd}
+  \]
+  From theorem \ref{thm-lim1}, we see that $\ker(m_q)$ is $\lim_n(\redco^{q}(X_n))$ and
+  $\coker(m_{q-1})$ is ${\lim_n}^1(\redco^{q-1}(X_n))$. This proves the theorem.
+
 \end{proof}
 
 % \bibliography{references} \bibliographystyle{amsplain}
