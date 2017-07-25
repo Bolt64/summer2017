@@ -89,34 +89,34 @@ We'll need a lemma (without proof) and a couple of definitions before we state t
 \end{lem}
 
 \begin{defn}[$n$-connectivity for maps]
-  A map $f$ from the pair $(X,A)$ to $(Y,B)$ is said to be $n$-connected if the induced
-  map on the fundamental group $f_{\ast}: \pi_q(X,A) \to \pi_q(Y,B)$ is an isomorphism for
-  $q < n$ and a surjection for $q=n$.
+  A map $f$ from the pair $(X,A)$ to $(Y,B)$ is said to be $n$-connected if the induced map on the
+  fundamental group $f_{\ast}: \pi_q(X,A) \to \pi_q(Y,B)$ is an isomorphism for $q < n$ and a
+  surjection for $q=n$.
 \end{defn}
 
 \begin{defn}[$n$-connectivity for pairs]
-  A pair $(X,A)$ is said to be $n$-connected if $i_{\ast}: \pi_0(A) \to \pi_0(X)$ is surjective
-  and $\pi_q(X,A) = 0$ for all $q \leq n$. This is equivalent to saying that the inclusion map
-  from $(A, \ast) \to (X, \ast)$ is $n$-connected (this follows from the long exact sequence
-  for relative homotopy groups).
+  A pair $(X,A)$ is said to be $n$-connected if $i_{\ast}: \pi_0(A) \to \pi_0(X)$ is surjective and
+  $\pi_q(X,A) = 0$ for all $q \leq n$. This is equivalent to saying that the inclusion map from
+  $(A, \ast) \to (X, \ast)$ is $n$-connected (this follows from the long exact sequence for relative
+  homotopy groups).
 \end{defn}
 With the terms defined, we can now state the theorem.
 
 \begin{thm}[Homotopy excision]
-  Let $X_1$ and $X_2$ be open subspaces of the space $X$, such that $X = X_1 \cup X_2$,
-  and $X_0 = X_1 \cap X_2$ is not empty. If the pair $(X_1, X_0)$ is $m$-connected,
-  and $(X_2, X_0)$ is $n$-connected, then the inclusion map $i: (X_1, X_0) \to (X, X_2)$
-  is $(m+n)$-connected, for $m \geq 1$ and $n \geq 0$.
+  Let $X_1$ and $X_2$ be open subspaces of the space $X$, such that $X = X_1 \cup X_2$, and
+  $X_0 = X_1 \cap X_2$ is not empty. If the pair $(X_1, X_0)$ is $m$-connected, and $(X_2, X_0)$ is
+  $n$-connected, then the inclusion map $i: (X_1, X_0) \to (X, X_2)$ is $(m+n)$-connected, for
+  $m \geq 1$ and $n \geq 0$.
 \end{thm}
-The idea of the proof is borrowed from May \todo[size=\tiny]{Put citation}: we will try to
-fit in the maps we want to show are isomorphisms, and surjections into a long exact sequence,
-and try to show that the third term vanishes in an appropriate range of dimensions. For this,
-we'll need another form of homotopy groups.
+The idea of the proof is borrowed from May \todo[size=\tiny]{Put citation}: we will try to fit in
+the maps we want to show are isomorphisms, and surjections into a long exact sequence, and try to
+show that the third term vanishes in an appropriate range of dimensions. For this, we'll need
+another form of homotopy groups.
 
 \begin{defn}[Triad homotopy groups]
-  If $X$ is a space, and $X_1$ and $X_2$ are open subspaces, such that the basepoint $x_0$
-  lies in $X_0 = X_1 \cap X_2$, then the triad homotopy groups are homotopy classes of maps
-  of tetrads of the following form.
+  If $X$ is a space, and $X_1$ and $X_2$ are open subspaces, such that the basepoint $x_0$ lies in
+  $X_0 = X_1 \cap X_2$, then the triad homotopy groups are homotopy classes of maps of tetrads of
+  the following form.
   \[
     \begin{tikzcd}
       &\left( I^q, I^{q-2} \times \{1\} \times I, I^{q-1} \times I, J^{q-2} \times I \cup I^{q-1} \times \{0\} \right) \ar[d] \\
@@ -133,35 +133,76 @@ we'll need another form of homotopy groups.
     \cdots \xrightarrow{\partial} \pi_q(X_1, X_0) \xrightarrow{i_{\ast}} \pi_q(X, X_2)
     \xrightarrow{j_{\ast}} \pi_q(X; X_1, X_2) \xrightarrow{\partial} \pi_{q-1}(X_1, X_0) \xrightarrow{i_{\ast}} \cdots
   \end{align*}
-  The maps $i_{\ast}$ and $j_{\ast}$ are induced by the inclusions, and $\partial$ is the boundary homomorphism,
-  defined by restricting the map to the face of the cube corresponding to $X_1$.
+  The maps $i_{\ast}$ and $j_{\ast}$ are induced by the inclusions, and $\partial$ is the boundary
+  homomorphism, defined by restricting the map to the face of the cube corresponding to $X_1$.
 \end{lem}
-  The proof that this sequence is exact is similar to the exactness proof for long exact sequence of relative homotopy
-  groups, and hence skipped.
+The proof that this sequence is exact is similar to the exactness proof for long exact sequence of
+relative homotopy groups, and hence skipped.
 
-  Coming back to the excision theorem, we see that the condition $m \geq 0$ and $n \geq 0$ forces the map
-  at the level of $\pi_0$ to be an isomorphism. Furthermore, because $m \geq 1$, by an argument similar to
-  the one in the proof of Seifert--Van Kampen theorem, we get that $\pi_1(X, X_2) = 0$, hence it's an isomorphism.
-  That means we only need to check for $2 \leq q \leq m+n$. By the long exact sequence of triad homotopy groups,
-  it's equivalent to proving the following theorem.
-  \begin{thm}
-    With the same hypotheses as that of the homotopy excision theorem,
-    \begin{align*}
-      \pi_q(X; X_1, X_2) = 0
-    \end{align*}
-    for all $2 \leq q \leq m+n$.
-  \end{thm}
+Coming back to the excision theorem, we see that the condition $m \geq 0$ and $n \geq 0$ forces the
+map at the level of $\pi_0$ to be an isomorphism. Furthermore, because $m \geq 1$, by an argument
+similar to the one in the proof of Seifert--Van Kampen theorem, we get that $\pi_1(X, X_2) = 0$,
+hence it's an isomorphism.  That means we only need to check for $2 \leq q \leq m+n$. By the long
+exact sequence of triad homotopy groups, it's equivalent to proving the following theorem.
+\begin{thm}
+  With the same hypotheses as that of the homotopy excision theorem,
+  \begin{align*}
+    \pi_q(X; X_1, X_2) = 0
+  \end{align*}
+  for all $2 \leq q \leq m+n$.
+\end{thm}
 
   \begin{proof}
-    It will suffice to prove this result when $X$ is a CW complex, and $X_1$, $X_2$, and $X_0$ are CW subcomplexes.
-    That's because we can approximate a space by a CW complex up to homotopy, and that won't change the homotopy groups. 
-    By our hypotheses on the connectivity of $(X_1, X_0)$ and $(X_2, X_0)$, $(X_1, X_0)$ contains no relative $q$-cells
-    i.e. $q$-cells outside $X_0$ for $q \leq m$, otherwise $\pi_q(X_1, X_0)$ wouldn't be $0$. Similarly, $(X_2, X_0)$
-    contains no relative $q$-cells for $q \leq n$.
+    It will suffice to prove this result when $X$ is a CW complex, and $X_1$, $X_2$, and $X_0$ are
+    CW subcomplexes.  That's because we can approximate a space by a CW complex up to homotopy, and
+    that won't change the homotopy groups.  By our hypotheses on the connectivity of $(X_1, X_0)$
+    and $(X_2, X_0)$, $(X_1, X_0)$ contains no relative $q$-cells i.e. $q$-cells outside $X_0$ for
+    $q \leq m$, otherwise $\pi_q(X_1, X_0)$ wouldn't be $0$. Similarly, $(X_2, X_0)$ contains no
+    relative $q$-cells for $q \leq n$. Furthermore, since we're trying to show a certain map from a
+    compact space is nullhomotopic, it suffices to consider cases where $X$ is a finite CW complex.
+
+    We will prove the result by inducting on the number of relative cells of $(X_1, X_0)$ and
+    $(X_2, X_0)$. Since the base case is the hard part, we'll show the induction step first. Suppose
+    we know the result for the triads $(X; X_1', X_2)$ and $(X; X_1, X')$, where $X_1$ is obtained
+    by attaching one more cell to $X_1'$, and $X' = X_1' \cup_{X_0} X_2$ (The first triad satisfies
+    the induction hypothesis for obvious reasons. The second triad has one relative cell in each
+    component, so that reduces to the base case.).
+     
+    By the long exact sequence of a triple, we get exactness in the rows of the following diagram.
+    \[
+      \begin{tikzcd}
+        \pi_q(X_1', X_0) \ar[d, "\alpha"] \ar[r] & \pi_q(X_1, X_0) \ar[d, "\beta"], \ar[r] &
+        \pi_q(X_1, X_1') \ar[d, "\gamma"] \ar[r] & \pi_{q-1}(X_1', X_0) \ar[d, "\delta"] \\
+        \pi_q(X', X_2) \ar[r] & \pi_q(X, X_2) \ar[r] & \pi_q(X, X') \ar[r] & \pi_{q-1}(X', X_2) \\
+      \end{tikzcd}
+    \]
+    By the induction hypothesis, the maps $\alpha$ and $\gamma$ are surjective, and $\delta$ is
+    injective, which means the map $\beta$ is surjective. This shows that $\pi_q(X; X_1, X_2) = 0$.
+
+    Similarly, if we know the result for $(X; X_1, X_2')$ and $(X; X', X_2)$, where $X_2$ is
+    obtained by attaching one more cell to $X_2'$, then we have the result for $(X; X_1, X_2)$,
+    since the map $i: (X_1, X_0) \hookrightarrow (X, X_2)$ factors through in the following manner.
+    \begin{align*}
+      (X_1, X_0) \xhookrightarrow{i_1} (X', X_2') \xhookrightarrow{i_2} (X, X_2)
+    \end{align*}
+    By the induction hypothesis, both $i_{1 \ast}$ and $i_{2 \ast}$ are surjections, hence their
+    composite $i_{\ast}$ is a surjection.
+
+    All that is left now is to prove the base case, i.e. when both $(X_1, X_0)$ and $(X_2, X_0)$
+    have one relative cell. Without loss of generality, let $X_1 = X_0 \cup D^k$, where $k > m$ and
+    $X_2 = X_0 \cup D^l$, where $l > n$. We need to show that the associated map of tetrads is
+    nullhomotopic.
+    \[
+      \begin{tikzcd}
+        &\left( I^q, I^{q-2} \times \{1\} \times I, I^{q-1} \times I, J^{q-2} \times I \cup I^{q-1} \times \{0\} \right) \ar[d] \\
+        &(X, X_0 \cup D^k, X_0 \cup D^l, x_0) \\
+      \end{tikzcd}
+    \]
+
   \end{proof}
   
-\section{Comparison theorem for cohomology theories}
-\label{sec:comp-theor-cohom}
+  \section{Comparison theorem for cohomology theories}
+  \label{sec:comp-theor-cohom}
 
 \begin{thm}[Comparison Theorem]
   If $h$ and $k$ are two reduced cohomology theories satisfying the $(\mathrm{DV})$ axiom, such that
