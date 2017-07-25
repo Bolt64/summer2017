@@ -70,8 +70,96 @@
 \section{Blakers-Massey Theorem}
 \label{sec:blak-mass-theor}
 
-Fill in later
+The Blakers-Massey theorem, or more formally, the homotopy excision theorem is a fairly important
+and useful result in homotopy theory, and one of its corollaries is the fundamental result in stable
+homotopy theory.
 
+\subsection{Statement and proof of the excision theorem}
+\label{sec:stat-proof-excis}
+
+We'll need a lemma (without proof) and a couple of definitions before we state the theorem.
+
+\begin{lem}[Long exact sequence of relative homotopy groups]
+  For a pair $(X,A)$, the homotopy groups fit into the following long exact sequence.
+  \begin{align*}
+    \cdots \xrightarrow{\partial} \pi_q(A) \xrightarrow{i_{\ast}} \pi_q(X) \xrightarrow{j_{\ast}}
+    \pi_q(X,A) \xrightarrow{\partial} \pi_{q-1}(A) \xrightarrow{i_{\ast}}\cdots
+  \end{align*}
+  The maps $i_{\ast}$ and $j_{\ast}$ are induced by the inclusions.
+\end{lem}
+
+\begin{defn}[$n$-connectivity for maps]
+  A map $f$ from the pair $(X,A)$ to $(Y,B)$ is said to be $n$-connected if the induced
+  map on the fundamental group $f_{\ast}: \pi_q(X,A) \to \pi_q(Y,B)$ is an isomorphism for
+  $q < n$ and a surjection for $q=n$.
+\end{defn}
+
+\begin{defn}[$n$-connectivity for pairs]
+  A pair $(X,A)$ is said to be $n$-connected if $i_{\ast}: \pi_0(A) \to \pi_0(X)$ is surjective
+  and $\pi_q(X,A) = 0$ for all $q \leq n$. This is equivalent to saying that the inclusion map
+  from $(A, \ast) \to (X, \ast)$ is $n$-connected (this follows from the long exact sequence
+  for relative homotopy groups).
+\end{defn}
+With the terms defined, we can now state the theorem.
+
+\begin{thm}[Homotopy excision]
+  Let $X_1$ and $X_2$ be open subspaces of the space $X$, such that $X = X_1 \cup X_2$,
+  and $X_0 = X_1 \cap X_2$ is not empty. If the pair $(X_1, X_0)$ is $m$-connected,
+  and $(X_2, X_0)$ is $n$-connected, then the inclusion map $i: (X_1, X_0) \to (X, X_2)$
+  is $(m+n)$-connected, for $m \geq 1$ and $n \geq 0$.
+\end{thm}
+The idea of the proof is borrowed from May \todo[size=\tiny]{Put citation}: we will try to
+fit in the maps we want to show are isomorphisms, and surjections into a long exact sequence,
+and try to show that the third term vanishes in an appropriate range of dimensions. For this,
+we'll need another form of homotopy groups.
+
+\begin{defn}[Triad homotopy groups]
+  If $X$ is a space, and $X_1$ and $X_2$ are open subspaces, such that the basepoint $x_0$
+  lies in $X_0 = X_1 \cap X_2$, then the triad homotopy groups are homotopy classes of maps
+  of tetrads of the following form.
+  \[
+    \begin{tikzcd}
+      &\left( I^q, I^{q-2} \times \{1\} \times I, I^{q-1} \times I, J^{q-2} \times I \cup I^{q-1} \times \{0\} \right) \ar[d] \\
+      &(X, X_1, X_2, x_0) \\
+    \end{tikzcd}
+  \]
+  This is only defined for $q \geq 2$.
+\end{defn}
+
+\begin{lem}[Long exact sequence of triad homotopy groups]
+  The triad homotopy groups fit into a long exact sequence with relative homotopy groups in the
+  following manner.
+  \begin{align*}
+    \cdots \xrightarrow{\partial} \pi_q(X_1, X_0) \xrightarrow{i_{\ast}} \pi_q(X, X_2)
+    \xrightarrow{j_{\ast}} \pi_q(X; X_1, X_2) \xrightarrow{\partial} \pi_{q-1}(X_1, X_0) \xrightarrow{i_{\ast}} \cdots
+  \end{align*}
+  The maps $i_{\ast}$ and $j_{\ast}$ are induced by the inclusions, and $\partial$ is the boundary homomorphism,
+  defined by restricting the map to the face of the cube corresponding to $X_1$.
+\end{lem}
+  The proof that this sequence is exact is similar to the exactness proof for long exact sequence of relative homotopy
+  groups, and hence skipped.
+
+  Coming back to the excision theorem, we see that the condition $m \geq 0$ and $n \geq 0$ forces the map
+  at the level of $\pi_0$ to be an isomorphism. Furthermore, because $m \geq 1$, by an argument similar to
+  the one in the proof of Seifert--Van Kampen theorem, we get that $\pi_1(X, X_2) = 0$, hence it's an isomorphism.
+  That means we only need to check for $2 \leq q \leq m+n$. By the long exact sequence of triad homotopy groups,
+  it's equivalent to proving the following theorem.
+  \begin{thm}
+    With the same hypotheses as that of the homotopy excision theorem,
+    \begin{align*}
+      \pi_q(X; X_1, X_2) = 0
+    \end{align*}
+    for all $2 \leq q \leq m+n$.
+  \end{thm}
+
+  \begin{proof}
+    It will suffice to prove this result when $X$ is a CW complex, and $X_1$, $X_2$, and $X_0$ are CW subcomplexes.
+    That's because we can approximate a space by a CW complex up to homotopy, and that won't change the homotopy groups. 
+    By our hypotheses on the connectivity of $(X_1, X_0)$ and $(X_2, X_0)$, $(X_1, X_0)$ contains no relative $q$-cells
+    i.e. $q$-cells outside $X_0$ for $q \leq m$, otherwise $\pi_q(X_1, X_0)$ wouldn't be $0$. Similarly, $(X_2, X_0)$
+    contains no relative $q$-cells for $q \leq n$.
+  \end{proof}
+  
 \section{Comparison theorem for cohomology theories}
 \label{sec:comp-theor-cohom}
 
@@ -316,12 +404,13 @@ technical, and will require the use of the theorem on Milnor exact sequence (the
   $d_n^m: [S^m, \calz(n)] \to \redco^{n}(S^m)$ which sends $[f]$ to $f^{\ast}(c_n)$. Because of the
   inductive construction, we know this is an isomorphism for all $m \geq 0$ (To see this, observe
   that a map from a compact space like $S^m$ factors through a finite stage in the colimit
-  $\calz(n)$). This can be extended to a natural isomorphism for all finite CW complexes.
-  \todo[size=\tiny]{Need to prove this, but can't think of a proof yet.  The five lemma might help}
-  Now that we know how to represent the individual functors $\redco^{n}$, we need to construct the
-  structure maps from the suspension homomorphism of the cohomology theory. Let $T_n$ be the
-  suspension homomorphism from $\redco^n(X)$ to $\redco^{n+1}(\Sigma X)$. If we set $X$ to be
-  $\calz(n)$, we have the following homomorphism.
+  $\calz(n)$). This can be extended to a natural isomorphism for all finite CW complexes.  This can
+  be done by applying Mayer-Vietoris to the $n-1$ skeleton and the discs being attached and then
+  applying the five lemma, like we did in section \ref{sec:comp-theor-cohom}.  Now that we know how
+  to represent the individual functors $\redco^{n}$, we need to construct the structure maps from
+  the suspension homomorphism of the cohomology theory. Let $T_n$ be the suspension homomorphism
+  from $\redco^n(X)$ to $\redco^{n+1}(\Sigma X)$. If we set $X$ to be $\calz(n)$, we have the
+  following homomorphism.
   \begin{align*}
     T_n: \redco^n(\calz(n)) \to \redco^{n+1}(\Sigma \calz(n+1))
   \end{align*}
