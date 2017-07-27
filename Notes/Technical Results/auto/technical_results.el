@@ -41,8 +41,14 @@
     "coker"
     "colim")
    (LaTeX-add-labels
-    "sec:blak-mass-theor"
+    "sec:hom-exc-theor"
     "sec:stat-proof-excis"
+    "eq:1"
+    "eq:2"
+    "eq:3"
+    "sec:coroll-excis-theor"
+    "sec:freud-susp-theor"
+    "sec:stable-homotopy"
     "sec:comp-theor-cohom"
     "sec:browns-repr-theor"
     "sec:spectra-cohom-theor"
@@ -51,6 +57,8 @@
     "sec:some-useful-lemmas"
     "thm-lim1"
     "thm-milnor")
+   (LaTeX-add-bibliographies
+    "references")
    (LaTeX-add-amsthm-newtheorems
     "thm"
     "lem"

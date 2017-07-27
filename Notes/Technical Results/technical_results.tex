@@ -67,12 +67,11 @@
 
 \newpage
 
-\section{Blakers-Massey Theorem}
-\label{sec:blak-mass-theor}
+\section{Homotopy Excision Theorem}
+\label{sec:hom-exc-theor}
 
-The Blakers-Massey theorem, or more formally, the homotopy excision theorem is a fairly important
-and useful result in homotopy theory, and one of its corollaries is the fundamental result in stable
-homotopy theory.
+The homotopy excision theorem is a fairly important and useful result in homotopy theory, and one of
+its corollaries is the fundamental result in stable homotopy theory.
 
 \subsection{Statement and proof of the excision theorem}
 \label{sec:stat-proof-excis}
@@ -108,7 +107,7 @@ With the terms defined, we can now state the theorem.
   $n$-connected, then the inclusion map $i: (X_1, X_0) \to (X, X_2)$ is $(m+n)$-connected, for
   $m \geq 1$ and $n \geq 0$.
 \end{thm}
-The idea of the proof is borrowed from May \todo[size=\tiny]{Put citation}: we will try to fit in
+The idea of the proof is borrowed from May \cite{may} \todo[size=\tiny]{Put citation}: we will try to fit in
 the maps we want to show are isomorphisms, and surjections into a long exact sequence, and try to
 show that the third term vanishes in an appropriate range of dimensions. For this, we'll need
 another form of homotopy groups.
@@ -119,7 +118,7 @@ another form of homotopy groups.
   the following form.
   \[
     \begin{tikzcd}
-      &\left( I^q, I^{q-2} \times \{1\} \times I, I^{q-1} \times I, J^{q-2} \times I \cup I^{q-1} \times \{0\} \right) \ar[d] \\
+      &\left( I^q, I^{q-2} \times \{1\} \times I, I^{q-1} \times \{1\}, J^{q-2} \times I \cup I^{q-1} \times \{0\} \right) \ar[d] \\
       &(X, X_1, X_2, x_0) \\
     \end{tikzcd}
   \]
@@ -185,7 +184,7 @@ exact sequence of triad homotopy groups, it's equivalent to proving the followin
     \begin{align*}
       (X_1, X_0) \xhookrightarrow{i_1} (X', X_2') \xhookrightarrow{i_2} (X, X_2)
     \end{align*}
-    By the induction hypothesis, both $i_{1 \ast}$ and $i_{2 \ast}$ are surjections, hence their
+    By the induction hypothesis, both ${i_1}_{\ast}$ and ${i_2}_{\ast}$ are surjections, hence their
     composite $i_{\ast}$ is a surjection.
 
     All that is left now is to prove the base case, i.e. when both $(X_1, X_0)$ and $(X_2, X_0)$
@@ -194,15 +193,126 @@ exact sequence of triad homotopy groups, it's equivalent to proving the followin
     nullhomotopic.
     \[
       \begin{tikzcd}
-        &\left( I^q, I^{q-2} \times \{1\} \times I, I^{q-1} \times I, J^{q-2} \times I \cup I^{q-1} \times \{0\} \right) \ar[d] \\
+        &\left( I^q, I^{q-2} \times \{1\} \times I, I^{q-1} \times \{1\}, J^{q-2} \times I \cup I^{q-1} \times \{0\} \right) \ar[d] \\
         &(X, X_0 \cup D^k, X_0 \cup D^l, x_0) \\
       \end{tikzcd}
     \]
 
+    Pick interior points $x_1 \in D^k$ and $x_2 \in D^l$. We then have the following maps of triads.
+    \begin{align}
+      (X_1; X_1, X_1 - x_1) &\hookrightarrow (X - x_2; X_1, X - \{x_1, x_2\}) \label{eq:1} \\
+      (X - x_2; X_1, X - \{x_1, x_2\}) &\hookrightarrow (X; X_1, X - \{x_1\}) \label{eq:2} \\
+      (X; X_1, X_2) &\hookrightarrow (X; X_1, X - \{x_1\}) \label{eq:3}
+    \end{align}
+    The maps labelled \ref{eq:1} and \ref{eq:3} induce isomorphisms at the level of triad homotopy
+    groups.  This is easy to see after observing the fact that $D^n$ with an interior point removed
+    can be homotoped to its boundary $S^{n-1}$. Doing this to the associated disks in map \ref{eq:1}
+    and \ref{eq:3}, we see the isomorphisms. Furthermore, $\pi_q(X_1; X_1, X_1 - x_1) = 0$ for
+    $q \geq 2$: this follows trivially from the long exact sequence of triad homotopy groups. That
+    means if we show map \ref{eq:2} induces a surjection at the level of $\pi_{\ast}$, we'll be
+    done.
+
+    Pick any map of tetrads $f$ going into $(X; X_1, X - \{x_1\})$. We need to show $f$ is homotopic
+    to a map into $(X - x_2; X_1, X - \{x_1, x_2\})$ followed by the inclusion map \ref{eq:2}. Let
+    $D^k_{1/2}$ and $D^l_{1/2}$ be sub-disks of radius $\frac{1}{2}$. Using the compactness of
+    $I^q$, it's easy to divide $I^q$ into smaller sub-cubes $I^q_{\alpha}$ such that if
+    $f(I^q_{\alpha})$ intersects $D^k_{1/2}$, it's contained in the interior of $D^k$ and if it
+    intersects $D^l_{1/2}$, it's contained in the interior of $D^l$. By simplicial approximation, we
+    can make $f$ homotopic (as a map of tetrads) to a map $g$ whose restriction to the $(k-1)$
+    skeleton of $I^q$ (with its subdivided cubes as cells) (the $(k-1)$ skeleton could possibly be
+    empty as well) does not cover $D^k_{1/2}$, and similarly, whose restriction to $(l-1)$-skeleton
+    does not cover $D^l_{1/2}$. Furthermore, we can make sure that we pick an $x_2$ in $D^l_{1/2}$
+    such that $g^{-1}(x_2)$ has dimension at most $q-l$ and it does not lie in the image of the
+    $(l-1)$-skeleton. Although, this is intuitively clear, it requires some work, but that will just
+    obscure the proof, so we leave it be.
+
+    Let $\pi: I^q \to I^{q-1}$ be a projection map that discards the last coordinate, and let $K$ be
+    the following space.
+    \begin{align*}
+      K = \pi^{-1} \circ \pi \circ g^{-1} (x_2)
+    \end{align*}
+    This means $K$ has dimensions at most $1$ more than $g^{-1}(x_2)$. We have the following
+    inequalities.
+    \begin{align*}
+      \dim K &\leq \dim g^{-1}(x_2) + 1 \\
+             &\leq q - l + 1 \\
+             &< m + 1
+    \end{align*}
+    The last inequality follows since $l > n$, and $q \leq m+n$. And since $m < k$, and all our
+    dimensions are integers, that lets us directly conclude $\dim K \leq k - 1$. This means $g(K)$
+    does not cover all of $D^k_{1/2}$. We pick $x_1 \in D^k_{1/2}$ such that it does not lie in
+    $g(K)$. It's not too hard to see that $\pi(g^{-1}(x_1)) \cup \partial I^{q-1}$ and
+    $\pi(g^{-1}(x_2))$ are disjoint (drawing a picture in the case of $I^3$ helps visualizing the
+    scenario)\todo[size=\tiny]{Insert image perhaps?}. Both of these are closed subsets of
+    $I^{q-1}$, hence by Uryssohn's lemma, there exists a function $v: I^{q-1} \to I$ such that the
+    following equalities are satisfied.
+    \begin{align*}
+      v(\pi(g^{-1}(x_1)) \cup \partial I^{q-1}) &= 0 \\
+      v(\pi(g^{-1}(x_2))) &= 1
+    \end{align*}
+    We use this to define a map $h$ from $I^{q+1}$ to $I^q$.
+    \begin{align*}
+      h(r, s, t) = (r, s - s \cdot t \cdot v(r))
+    \end{align*}
+    Let $f': I^q \to X$ be defined as $f'(r,s) = g \circ h(r,s, 1)$.  We have the following
+    observations.
+    \begin{align*}
+      h(r,s,0) &= (r,s) \\
+      h(r,0,t) &= (r, 0) \\
+      h(r,s,t) &= (r,s) &&\text{if $r \in \partial I^{q-1}$}
+    \end{align*}
+    Furthermore, if $h(r,s,t) \in g^{-1}(x_1)$, then $v(r) = 0$, and hence $h(r,s,t) = (r,s)$.
+    Similarly, $h(r,s,t) \in g^{-1}(x_2)$ implies $v(r)= 1$, and $h(r,s,t) = (r, s-st)$. Thus,
+    $g \circ h$ is the required homotopy of tetrads.
+    
   \end{proof}
   
-  \section{Comparison theorem for cohomology theories}
-  \label{sec:comp-theor-cohom}
+  \subsection{Corollaries of the excision theorem}
+  \label{sec:coroll-excis-theor}
+
+  \subsubsection{Freudenthal suspension theorem}
+  \label{sec:freud-susp-theor}
+
+  For any space $X$, we have the suspension homomorphism, $\Sigma_{\ast}$, defined as follows.
+  \begin{align*}
+    \Sigma_{q}: \pi_q(X) &\to \pi_{q+1}(\Sigma X) \\
+    \Sigma_{q}([f]: S^q \to X) &= [f \wedge \mathrm{id}]
+  \end{align*}
+  Under certain additional conditions on the space $X$ and $q$, $\Sigma_q$ is an isomorphism.  The
+  excision theorem lets us easily deduce what those conditions are.
+
+\begin{thm}[Freudenthal suspension]
+  If $X$ is $n$-connected, then the suspension homomorphism is an isomorphism for $q \leq 2n$ and a
+  surjection for $q = 2n+1$.
+\end{thm}
+
+\begin{proof}
+  Let $C_+X$ and $C_-X$ be the upper and lower cones of $\Sigma X$. Their intersection is $X$.  The
+  pairs $(C_+X, X)$ and $(C_-X, X)$ are both $n$-connected (this follows from the fact that cones
+  are contractible, and the long exact sequence of relative homotopy groups). By the homotopy
+  excision theorem, we get that the inclusion of $(C_+X, X)$ into $(\Sigma X, C_-X)$ is an
+  isomorphism until $\pi_{2n}$ and a surjection for $\pi_{2n+1}$. Again, using the long exact
+  sequence of relative homotopy groups, we get that $\pi_{\ast}(C_+X, X) \cong \pi_{\ast}(X)$, and
+  similarly $\pi_{\ast}(\Sigma X, C_-X) \cong \pi_{\ast+1}(\Sigma X)$. There is a bit of work
+  involved in showing that this isomorphism/surjection is actually the suspension homomorphism, but
+  that's technical, and not too hard.
+\end{proof}
+
+\subsubsection{Stable homotopy}
+\label{sec:stable-homotopy}
+
+We now look at the colimit of the following diagram.
+\begin{align*}
+  \pi_q(S^0) \xrightarrow{\Sigma_q} \pi_{q+1}(S^1) \xrightarrow{\Sigma_{q+1}} \pi_{q+2}(S^2) \xrightarrow{\Sigma_{q+2}} \cdots
+\end{align*}
+Since $S^n$ is $n$-connected, after $\frac{q}{2}$ steps, the arrows in the diagram become
+isomorphisms, which means the colimit of the diagram is what the diagram stabilizes to after
+$\frac{q}{2}$ steps. We call the colimit the $q$\textsuperscript{th} stable homotopy group of
+$S^0$. From this point on, it's not too hard to show that the stable homotopy functor is a nicely
+behaved functor: in fact, it's a generalized homology theory.
+  
+\section{Comparison theorem for cohomology theories}
+\label{sec:comp-theor-cohom}
 
 \begin{thm}[Comparison Theorem]
   If $h$ and $k$ are two reduced cohomology theories satisfying the $(\mathrm{DV})$ axiom, such that
@@ -340,6 +450,8 @@ that $\redco^n(X)$ is naturally isomorphic to $\left[X, \calz(n)\right]$.
 
 \subsection{Proof of Brown's representability theorem}
 \label{sec:proof-browns-repr}
+
+\textbf{Note:} This proof is primarily taken from A. J. Tolland's article\cite{tolland}.
 
 In the previous section, we saw that if we are given an $\Omega$-spectrum, we can construct a
 reduced cohomology theory using the spectrum. Brown's representability theorem is the converse of
@@ -725,6 +837,7 @@ equations can be solved simultaneously and $\coker(\alpha_I)$ is $0$. This shows
 
 \end{proof}
 
-% \bibliography{references} \bibliographystyle{amsplain}
+\bibliography{references}
+\bibliographystyle{amsplain}
 
 \end{document}
